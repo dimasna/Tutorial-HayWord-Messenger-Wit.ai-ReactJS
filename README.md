@@ -1,1 +1,0 @@
-# Tutorial-HayLingo-Versi-Mini
