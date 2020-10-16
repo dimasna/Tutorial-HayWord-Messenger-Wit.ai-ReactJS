@@ -13,7 +13,9 @@ berikut ini tampilan aplikasi yang akan kita buat :
 
 ### Hal-hal yang harus dipersiapkan
  ☑ Akun Facebook untuk login di FB developer (https://developers.facebook.com/) dan Wit.ai (https://wit.ai/)
+ 
  ☑ Akun RapidAPI (https://rapidapi.com/)
+ 
  ☑ Akun Firebase (https://firebase.google.com/)
 
 ## Daftar Isi
