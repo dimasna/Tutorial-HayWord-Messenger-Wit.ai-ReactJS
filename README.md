@@ -7,10 +7,22 @@ Halo kawan-kawan, pada kesempatan kali ini saya akan berbagi tutorial cara membu
 
 berikut ini tampilan aplikasi yang akan kita buat :
 
+### Mengapa Harus Buat Aplikasi di Facebook Messenger ?
+
+### Arsitektur Aplikasi yang akan dibuat
+
+### Hal-hal yang harus dipersiapkan
+ ☑ Akun Facebook untuk login di FB developer (https://developers.facebook.com/) dan Wit.ai (https://wit.ai/)
+ ☑ Akun RapidAPI (https://rapidapi.com/)
+ ☑ Akun Firebase (https://firebase.google.com/)
+
 ## Daftar Isi
 
 <!--ts-->
    * [Pendahuluan](#pendahuluan)
+      * [Mengapa Buat App di Facebook Messenger ?](#mengapa-harus-buat-aplikasi-di-facebook-messenger-)
+      * [Arsitektur Aplikasi yang akan dibuat](#arsitektur-aplikasi-yang-akan-dibuat)
+      * [Hal yang harus dipersiapkan](#hal-hal-yang-harus-dipersiapkan)
    * [Daftar Isi](#daftar-isi)
    * [Installation](#installation)
    * [Usage](#usage)
