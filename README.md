@@ -1,29 +1,36 @@
 # 🥇Studi Kasus Membuat Aplikasi HayLingo Versi Mini dengan FB Messenger, Wit.ai dan React JS
 
 
-## Pendahuluan
+## 🖐Pendahuluan
 
 Halo kawan-kawan, pada kesempatan kali ini saya akan berbagi tutorial cara membuat aplikasi HayLingo versi mini dengan FB messenger, Wit.ai (NLP) dan React JS. Sebelumnya HayLingo meraih juara 1 lomba hackathon facebook messenger 2020 dengan menawarkan fitur HayBot, HayFriend, dan HayWord. Di studi kasus kali ini kita akan berfokus membuat HayWord yaitu fitur untuk membantu pengguna memperkaya kosa kata bahasa inggrisnya dengan gamifikasi tebak kata dengan berbagai macam petunjuk yang diberikan seperti sinonim, jenis kata dan definisi. 
 
 berikut ini tampilan aplikasi yang akan kita buat :
 
 #### Mengapa Harus Buat Aplikasi di Facebook Messenger ?
+👨‍👨‍👦‍👦 Digunakan oleh 1,3 Milyar pengguna global dan diperkirakan 2,4 Milyar pada 2021
+
+📣 Marketing melalui FB Messenger 70%  (Open Rate) lebih besar daripada email marketing 
+
+📥 Menjadi platform messaging teratas di US dengan jumlah unduh bulanan sebesar 2 juta unduhan
+
+[Sumber](https://review42.com/facebook-messenger-statistics/)
+
 
 #### Arsitektur Aplikasi yang akan dibuat
 
 #### Hal-hal yang harus dipersiapkan
- ☑ Akun Facebook untuk login di FB developer (https://developers.facebook.com/) dan Wit.ai (https://wit.ai/)
- 
- ☑ Akun RapidAPI (https://rapidapi.com/)
- 
+ ☑ Akun Facebook untuk login di FB developer (https://developers.facebook.com/), Wit.ai (https://wit.ai/), Glitch (https://glitch.com/), RapidAPI (https://rapidapi.com/)
  ☑ Akun Firebase (https://firebase.google.com/)
+ ☑ Komputer/PC 
+ ☑ Koneksi Internet
  
  
 
 ## 📃Daftar Isi
 
 <!--ts-->
-   * [Pendahuluan](#pendahuluan)
+   * [Pendahuluan](#🖐pendahuluan)
       * [Mengapa Buat App di Facebook Messenger ?](#mengapa-harus-buat-aplikasi-di-facebook-messenger-)
       * [Alur Aplikasi yang akan dibuat](#arsitektur-aplikasi-yang-akan-dibuat)
       * [Apa yang akan kamu pelajari](#arsitektur-aplikasi-yang-akan-dibuat)
