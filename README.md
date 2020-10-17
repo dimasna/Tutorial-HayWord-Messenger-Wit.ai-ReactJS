@@ -17,8 +17,10 @@ berikut ini tampilan aplikasi yang akan kita buat :
  ☑ Akun RapidAPI (https://rapidapi.com/)
  
  ☑ Akun Firebase (https://firebase.google.com/)
+ 
+ 
 
-## Daftar Isi
+## 📃Daftar Isi
 
 <!--ts-->
    * [Pendahuluan](#pendahuluan)
@@ -26,8 +28,8 @@ berikut ini tampilan aplikasi yang akan kita buat :
       * [Alur Aplikasi yang akan dibuat](#arsitektur-aplikasi-yang-akan-dibuat)
       * [Apa yang akan kamu pelajari](#arsitektur-aplikasi-yang-akan-dibuat)
       * [Hal yang harus dipersiapkan](#hal-hal-yang-harus-dipersiapkan)
-   * [Daftar Isi](#daftar-isi)
-   * [Instalasi](#installation)
+   * [Daftar Isi](#📃daftar-isi)
+   * [Instalasi](#⚙instalasi)
       * [Mengatur Webhook](#mengatur-webhook)
       * [Mengatur FB App](#mengatur-fb-app)
    * [Welcome Screen](#usage)
@@ -48,3 +50,9 @@ berikut ini tampilan aplikasi yang akan kita buat :
       * [Memberikan Petunjuk untuk Jawaban](#arsitektur-aplikasi-yang-akan-dibuat)
       * [Memeriksa Jawaban Pengguna](#stdin)
 <!--te-->
+
+
+
+## ⚙Instalasi
+
+#### Mengatur Webhook
