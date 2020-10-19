@@ -69,7 +69,7 @@ berikut ini tampilan aplikasi yang akan kita buat :
 
 Kali ini kita akan menggunakan server Glitch, kalau kawan-kawan ingin menggunakan server sendiri bisa download source code dari repo facebook [disini](https://github.com/fbsamples/messenger-platform-samples/tree/master/quick-start).
 
-untuk membuat webhook di Glitch :
+untuk mendapatkan url webhook di Glitch :
 1. Klik Remix on Glitch di bawah ini (untuk menyalin kodingan awal) [sumber : fb messenger quick-start](https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start)
 
     [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/quickstartchatbot)
@@ -77,6 +77,10 @@ untuk membuat webhook di Glitch :
 2. Klik tombol "Remix to Edit",  jangan lupa untuk Sign In agar project tersimpan di akun glitchmu.
     ![gambar remix to edit](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603074774/glitch_remix_mdnfyv.png "remix to edit")
     
-3. 
+3. Klik tombol share > live app > copy
+    ![copy app url](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603134345/get_url_app_w17azv.png "copy url app")
+
+4. webhook url :
+   
     
 
