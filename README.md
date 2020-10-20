@@ -42,6 +42,7 @@ berikut ini tampilan aplikasi yang akan kita buat :
    * [Instalasi](#⚙instalasi)
       * [Mengatur Webhook](#mengatur-webhook)
       * [Mengatur FB App](#mengatur-fb-app)
+      * [Integrasi Webhook dengan FB App](#integrasi-webhook-dengan-fb-app)
    * [Welcome Screen](#usage)
       * [Mengatur Teks Greeting](#stdin)
       * [Mengatur Tombol Get Started](#local-files)
@@ -95,4 +96,22 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
 4. Setelah berhasil membuat App ID, akan tampil halaman dashboard app yang dibuat (HayWord). Pada dashboard tersebut klik tombol Set Up dibagian Messenger.
     ![setup messenger](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603199142/set_up_messenger_i8kdzf.png "setup messenger")
 5. Klik Create New Page untuk membuat halaman baru yang akan terhubung dengan aplikasi kita
+    ![create new page](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603214062/new_page_gfme2b.png "create new page")
+6. Isi informasi mengenai halaman yang dibuat dan klik tombol create page
+    ![informasi page](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603214544/detail_page_iosmuy.png "informasi page")
+7. Setelah berhasil membuat halaman, lalu kembali ke dashboard app dan klik tombol add or remove pages
+    ![add or remove page](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603214928/add_remove_page_vbip8w.png "add or remove page")
+8. Pilih halaman yang telah kita buat tadi, kemudian klik next 
+    ![pilih halaman](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603215211/pilih_page_z1ivyu.png "pilih halaman")
+9. Lalu klik tombol done
+    ![tombol done](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603215209/hak_akses_conversation_kjcbcb.png "add or tombol done")
+10. Jika berhasil, maka akan tampil halaman yang telah kita hubungkan dengan app
+    ![tampil halaman](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603216217/terhubung_halaman_ejb5ny.jpg "tampil halaman")
     
+ #### Integrasi Webhook dengan FB App
+ 
+ untuk mengintegrasikan webhook dengan FB App langkah-langkahnya sebagai berikut :
+1. Klik Tombol Generate Page Access Token untuk mengotentikasi request ke messenger
+   ![page access token](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603217293/generate_access_token_ehfnbf.png "page access token")
+2. Klik Checkbox I Understand > copy access token > done
+   ![access token](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603217591/access_token_zhjj4l.png "access token")
