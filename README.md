@@ -85,5 +85,14 @@ untuk mendapatkan url webhook di Glitch :
     > dikasus ini url webhooknya adalah  : `https://hayword.glitch.me/webhook`
 
 #### Mengatur FB App
+
 Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App sebagai berikut :
-1. 
+1. Buka halaman [facebok developer app](https://developers.facebook.com/apps/), *pastikan sudah login dengan akun facebook.
+2. klik tombol Create App > pilih Manage Business Integration.
+    ![create app](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603198175/create_app_gwu1ni.png "create app")
+3. Isi detail aplikasi > klik Create App ID.
+    ![isi detail aplikasi](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603198691/isi_form_z9iecr.png "isi detail aplikasi")
+4. Setelah berhasil membuat App ID, akan tampil halaman dashboard app yang dibuat (HayWord). Pada dashboard tersebut klik tombol Set Up dibagian Messenger.
+    ![setup messenger](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603199142/set_up_messenger_i8kdzf.png "setup messenger")
+5. Klik Create New Page untuk membuat halaman baru yang akan terhubung dengan aplikasi kita
+    
