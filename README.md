@@ -81,6 +81,9 @@ untuk mendapatkan url webhook di Glitch :
     ![copy app url](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603134345/get_url_app_w17azv.png "copy url app")
 
 4. webhook url :
-   
-    
+    `https://<URL_YANG_KAMU_COPY>/webhook`
+    > dikasus ini url webhooknya adalah  : `https://hayword.glitch.me/webhook`
 
+#### Mengatur FB App
+Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App sebagai berikut :
+1. 
