@@ -112,21 +112,30 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
  
  untuk mengintegrasikan webhook dengan FB App langkah-langkahnya sebagai berikut :
 1. Klik Tombol Generate Page Access Token untuk mengotentikasi request ke messenger
-   ![page access token](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603217293/generate_access_token_ehfnbf.png "page access token")
+   <details>
+     <summary>Lihat Gambar</summary>
+
+    ![page access token](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603217293/generate_access_token_ehfnbf.png "page access token")
+
+
+   </details>
+   
 2. Klik Checkbox I Understand > copy access token > done
    ![access token](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603217591/access_token_zhjj4l.png "access token")
 3. Buat variabel PAGE_ACCESS_TOKEN pada file .env dalam glitch, lalu salin token yang sebelumnya didapat ke variabel tersebut.
    ![access token](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603248148/variabel_token_lvw2r3.png "access token")
 4. Selanjutnya buat variabel webhook VERIFY_TOKEN dan isi variabel dengan apa yang kamu mau pada file .env untuk memverifikasi webhook di fb app.
    ![verify token](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603248693/verify_token_zeepj3.png "verify token")
-5. Kemudian tambahkan url webhook di dalam dashboard aplikasi, klik tombol 'Add Callback Url'
+5. Kemudian tambahkan url webhook di dalam dashboard aplikasi, klik tombol 'Add Callback Url'.
    ![tambah url webhook](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603250861/add_callback_url_fbi1hf.png "tambah url webhook")
-6. Isi url webhook dan token yang telah kita atur sebelumnya, lalu klik tombol 'Verify and Save'
+6. Isi url webhook dan token yang telah kita atur sebelumnya, lalu klik tombol 'Verify and Save'.
    ![verify webhook](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603251168/verify_webhook_zdq0h1.png "verify webhook")
-7. Setelah berhasil memverifikasi, klik tombol 'Add Subscriptions' untuk berlangganan service messenger yang akan kita gunakan
+7. Setelah berhasil memverifikasi, klik tombol 'Add Subscriptions' untuk berlangganan service messenger yang akan kita gunakan.
    ![add subs](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603260345/add_subs_pqey8q.png "add subs")
-8. Setelah berhasil memverifikasi, klik tombol 'Add Subscriptions' untuk berlangganan service messenger yang akan kita gunakan
-   ![add subs](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603260345/add_subs_pqey8q.png "add subs")
+8. Pilih messages dan messaging_postbacks,lalu Klik Tombol 'Save'.
+   ![save subs](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603260344/save_subscription_y2gqzi.png "save subs")
 
 
-   
+ ## 🎉Welcome Screen
+ 
+ 
