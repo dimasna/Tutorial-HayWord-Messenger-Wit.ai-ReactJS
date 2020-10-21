@@ -115,3 +115,12 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
    ![page access token](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603217293/generate_access_token_ehfnbf.png "page access token")
 2. Klik Checkbox I Understand > copy access token > done
    ![access token](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603217591/access_token_zhjj4l.png "access token")
+3. Buat variabel PAGE_ACCESS_TOKEN pada file .env dalam glitch, lalu salin token yang sebelumnya didapat ke variabel tersebut.
+   ![access token](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603248148/variabel_token_lvw2r3.png "access token")
+4. Selanjutnya buat variabel webhook VERIFY_TOKEN pada file .env untuk memverifikasi webhook di fb app.
+   ![verify token](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603248693/verify_token_zeepj3.png "verify token")
+5. Kemudian tambahkan url webhook di dalam dashboard aplikasi, klik tombol 'Add Callback Url'
+   ![tambah url webhook](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603250861/add_callback_url_fbi1hf.png "tambah url webhook")
+6. Isi url webhook dan token yang telah kita atur sebelumnya, lalu klik tombol 'Verify and Save'
+   ![verify webhook](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603251168/verify_webhook_zdq0h1.png "verify webhook")
+   
