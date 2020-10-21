@@ -72,20 +72,22 @@ Kali ini kita akan menggunakan server Glitch, kalau kawan-kawan ingin menggunaka
 
 untuk mendapatkan url webhook di Glitch :
 1. Klik Remix on Glitch di bawah ini (untuk menyalin kodingan awal) [sumber : fb messenger quick-start](https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start)
-<details>
-     <summary>Lihat Gambar</summary>
-    [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/quickstartchatbot)
-</details>
+  
+   [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/quickstartchatbot)
+ 
 2. Klik tombol "Remix to Edit",  jangan lupa untuk Sign In agar project tersimpan di akun glitchmu.
-<details>
+   <details>
      <summary>Lihat Gambar</summary>
+ 
     ![gambar remix to edit](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603074774/glitch_remix_mdnfyv.png "remix to edit")
-</details>  
-3. Klik tombol share > live app > copy
-<details>
+    
+   </details>  
+3. Klik tombol share > live app > copy.
+   <details>
      <summary>Lihat Gambar</summary>
-    ![copy app url](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603134345/get_url_app_w17azv.png "copy url app")
-</details>  
+ 
+     ![copy app url](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603134345/get_url_app_w17azv.png "copy url app")
+   </details>  
 4. webhook url :
     `https://<URL_YANG_KAMU_COPY>/webhook`
     > dikasus ini url webhooknya adalah  : `https://hayword.glitch.me/webhook`
@@ -95,48 +97,57 @@ untuk mendapatkan url webhook di Glitch :
 Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App sebagai berikut :
 1. Buka halaman [facebok developer app](https://developers.facebook.com/apps/), *pastikan sudah login dengan akun facebook.
 2. klik tombol Create App > pilih Manage Business Integration.
-<details>
+   <details>
      <summary>Lihat Gambar</summary>
+ 
     ![create app](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603198175/create_app_gwu1ni.png "create app")
- </details>
+   </details>
 3. Isi detail aplikasi > klik Create App ID.
- <details>
+    <details>
      <summary>Lihat Gambar</summary>
+ 
     ![isi detail aplikasi](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603198691/isi_form_z9iecr.png "isi detail aplikasi")
-  </details>
+    </details>
 4. Setelah berhasil membuat App ID, akan tampil halaman dashboard app yang dibuat (HayWord). Pada dashboard tersebut klik tombol Set Up dibagian Messenger.
-  <details>
-     <summary>Lihat Gambar</summary>
+   <details>
+    <summary>Lihat Gambar</summary>
+ 
     ![setup messenger](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603199142/set_up_messenger_i8kdzf.png "setup messenger")
    </details>
 5. Klik Create New Page untuk membuat halaman baru yang akan terhubung dengan aplikasi kita.
    <details>
      <summary>Lihat Gambar</summary>
+ 
     ![create new page](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603214062/new_page_gfme2b.png "create new page")
-    </details>
+   </details>
 6. Isi informasi mengenai halaman yang dibuat dan klik tombol 'create page'.
     <details>
      <summary>Lihat Gambar</summary>
+ 
     ![informasi page](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603214544/detail_page_iosmuy.png "informasi page")
      </details>
 7. Setelah berhasil membuat halaman, lalu kembali ke dashboard app dan klik tombol 'add or remove pages'.
      <details>
      <summary>Lihat Gambar</summary>
+ 
     ![add or remove page](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603214928/add_remove_page_vbip8w.png "add or remove page")
       </details>
 8. Pilih halaman yang telah kita buat tadi, kemudian klik 'next'.
       <details>
      <summary>Lihat Gambar</summary>
+ 
     ![pilih halaman](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603215211/pilih_page_z1ivyu.png "pilih halaman")
        </details>
 9. Lalu klik tombol 'done'.
        <details>
      <summary>Lihat Gambar</summary>
+ 
     ![tombol done](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603215209/hak_akses_conversation_kjcbcb.png "add or tombol done")
       </details>
 10. Jika berhasil, maka akan tampil halaman yang telah kita hubungkan dengan app.
         <details>
      <summary>Lihat Gambar</summary>
+ 
     ![tampil halaman](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603216217/terhubung_halaman_ejb5ny.jpg "tampil halaman")
     </details>
  #### Integrasi Webhook dengan FB App
