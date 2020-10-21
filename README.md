@@ -209,14 +209,15 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
  ## 🎉Welcome Screen
  
  welcome screen adalah tampilan ketika pengguna pertama kali chat dengan fb page kita, kita akan mengatur get started button dan greeting text.
- > gambar welcome screen
+ 
+ ![welcome screen](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603306751/get_started_postback_rijuet.png "welcome screen")
  
  #### Mengatur Tombol Get Started
  1. Buka file setWelcomeScreen.js pada glitch, pada baris ke-8 ganti `<postback_payload>` dengan kata apa saja yang diinginkan. contoh disini adalah kata `MULAI`.
     <details>
       <summary>Lihat Gambar</summary>
 
-    ![set postback get started button](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603306751/get_started_postback_rijuet.png "set postback get started button")
+    ![set postback get started button](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603309069/welcome_screen_result_qwk21e.png "set postback get started button")
     </details>
  
  #### Mengatur Teks Greeting
