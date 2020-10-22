@@ -290,13 +290,13 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
     </details>
  6. Klik tombol '</>' pada add an app to get started.
     <details>
-      <summary>Lihat Gambar</summary>
+    <summary>Lihat Gambar</summary>
 
     ![add app to firebase](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603387257/add_app_fx4x3a.png "add app to firebase")
     </details>
  7. Isi nama aplikasi > klik tombol 'Register app'.
     <details>
-      <summary>Lihat Gambar</summary>
+    <summary>Lihat Gambar</summary>
 
     ![add nickname app](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603387396/isi_nama_app_vlhekf.png "add nickname app")
     </details>
