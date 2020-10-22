@@ -48,6 +48,7 @@ berikut ini tampilan aplikasi yang akan kita buat :
       * [Mengatur Teks Greeting](#mengatur-teks-greeting)
       * [Menyimpan Pengaturan Welcome Screen](#menyimpan-pengaturan-welcome-screnn)
    * [Alur Setting Profile](#👨‍💼alur-setting-profile)
+      * [Menghubungkan Firebase dengan Aplikasi](#menghubungkan-firebase-dengan-aplikasi)
       * [Membuat Tabel Pengguna di Firebase](#membuat-tabel-pengguna-di-firebase)
       * [Membuat Webview untuk Mendapatkan Data Pengguna dengan ReactJS](#stdin)
       * [Menyimpan Data ke Firebase](#stdin)
@@ -260,7 +261,7 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
  
  di alur ini kita akan mengambil informasi bahasa asli pengguna untuk keperluan fitur translate. 
  
- #### Membuat Tabel Pengguna di Firebase
+ #### Menghubungkan Firebase dengan Aplikasi
  sebelum kita mengambil informasi pengguna, terlebih dahulu kita harus membuat database tempat penyimpanan informasi tersebut dan disini kita akan menggunakan firebase sebagai   databasenya.
  
  1. Buka halaman [console firebase](https://console.firebase.google.com/), pastikan sudah login dengan akun google
@@ -325,3 +326,5 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
 
       ![location database](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603388043/cloud_firestore_location_axigbn.png "location database")
       </details>
+      
+#### Membuat Tabel Pengguna di Firebase
