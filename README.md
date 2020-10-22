@@ -288,4 +288,40 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
 
     ![step 2 firebase project](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603345339/project_berhasil_dibuat_txwtmj.png "step 2 firebase project")
     </details>
- 6. 
+ 6. Klik tombol '</>' pada add an app to get started.
+    <details>
+      <summary>Lihat Gambar</summary>
+
+    ![add app to firebase](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603387257/add_app_fx4x3a.png "add app to firebase")
+    </details>
+ 7. Isi nama aplikasi > klik tombol 'Register app'.
+    <details>
+      <summary>Lihat Gambar</summary>
+
+    ![add nickname app](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603387396/isi_nama_app_vlhekf.png "add nickname app")
+    </details>
+ 8. Buat variabel `API_KEY` `AUTH_DOMAIN` `PROJECT_ID` pada file .env dalam glitch dan isi sesuai dengan value yang didapat di firebase sdk.
+    <details>
+      <summary>Lihat Gambar</summary>
+
+    ![firebase sdkl](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603392369/set_apikey_firebase_pvjd4t.png "firebase sdk")
+    ![set variable firebase](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603392368/add_variabel_firebase_g7elo8.png "set variable firebase")
+    </details>
+  9. Setelah itu, kembali ke halaman console firebase > pilih menu 'Develop' > Cloud Firestore > klik tombol 'Create Database'.
+     <details>
+      <summary>Lihat Gambar</summary>
+
+     ![create database](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603387722/create_database_jmdhfx.png "create database")
+     </details>
+  10. Pada rules kita pilih 'Production Mode' > klik tombol 'Next'.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![rule database](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603388043/rule_cloud_firestore_pxu9rg.png "rule database")
+      </details>
+  11. Pada location biarkan secara default > klik tombol 'Enable'.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![location database](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603388043/cloud_firestore_location_axigbn.png "location database")
+      </details>
