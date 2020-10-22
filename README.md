@@ -43,11 +43,12 @@ berikut ini tampilan aplikasi yang akan kita buat :
       * [Mengatur Webhook](#mengatur-webhook)
       * [Mengatur FB App](#mengatur-fb-app)
       * [Integrasi Webhook dengan FB App](#integrasi-webhook-dengan-fb-app)
-   * [Welcome Screen](#usage)
+   * [Welcome Screen](#🎉welcome-screen)
       * [Mengatur Tombol Get Started](#mengatur-tombol-get-started)
       * [Mengatur Teks Greeting](#mengatur-teks-greeting)
       * [Menyimpan Pengaturan Welcome Screen](#menyimpan-pengaturan-welcome-screnn)
-   * [Alur Setting Profile](#tests)
+   * [Alur Setting Profile](#👨‍💼alur-setting-profile)
+      * [Membuat Tabel Pengguna di Firebase](#membuat-tabel-pengguna-di-firebase)
       * [Membuat Webview untuk Mendapatkan Data Pengguna dengan ReactJS](#stdin)
       * [Menyimpan Data ke Firebase](#stdin)
    * [Alur Fitur Translate](#dependency)
@@ -255,5 +256,36 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
     ![run setWelcomeScreen.js](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603308661/run_setWelcomeScreen.js_rgcg7e.png "setWelcomeScreen.js")
     </details>
  
+ ## 👨‍💼Alur Setting Profile
  
+ di alur ini kita akan mengambil informasi bahasa asli pengguna untuk keperluan fitur translate. 
  
+ #### Membuat Tabel Pengguna di Firebase
+ sebelum kita mengambil informasi pengguna, terlebih dahulu kita harus membuat database tempat penyimpanan informasi tersebut dan disini kita akan menggunakan firebase sebagai   databasenya.
+ 
+ 1. Buka halaman [console firebase](https://console.firebase.google.com/), pastikan sudah login dengan akun google
+ 2. Klik tombol 'Create a Project'.
+    <details>
+      <summary>Lihat Gambar</summary>
+
+    ![create firebase project](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603344422/create_project_firebase_muq6bw.png "create firebase project")
+    </details>
+ 3. Isi data project sesuai yang kamu inginkan, dan jangan lupa centang 'I accept the Firebase terms', lalu klik 'continue'.
+    <details>
+      <summary>Lihat Gambar</summary>
+
+    ![isi data firebase project](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603344533/isi_data_project_firebase_tqszlc.png "isi data firebase project")
+    </details>
+ 4. Pada step 2 disable 'Enable Google Analytics for this project' karena untuk project ini tidak membutuhkanya, lalu klik 'Continue'.
+    <details>
+      <summary>Lihat Gambar</summary>
+
+    ![step 2 firebase project](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603345137/step_2_create_firebase_project_nsxtf7.png "step 2 firebase project")
+    </details>
+ 5. Setelah project berhasil dibuat > klik 'Continue'.
+    <details>
+      <summary>Lihat Gambar</summary>
+
+    ![step 2 firebase project](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603345339/project_berhasil_dibuat_txwtmj.png "step 2 firebase project")
+    </details>
+ 6. 
