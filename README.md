@@ -327,4 +327,22 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
       ![location database](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603388043/cloud_firestore_location_axigbn.png "location database")
       </details>
       
-#### Membuat Tabel Pengguna di Firebase
+  #### Membuat Tabel Pengguna di Firebase
+  1. Pada sidebar kiri firebase, pilih menu Develop > Cloud Firestore > klik tombol 'Start Collection'.
+     <details>
+      <summary>Lihat Gambar</summary>
+
+      ![create table](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603453591/create_table_rekvc2.png "create table")
+      </details>
+  2. Isi nama collection (table) dengan 'users' > klik 'next'.
+     <details>
+      <summary>Lihat Gambar</summary>
+
+      ![add name to table](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603456448/add_name_to_table_suu312.png "add name to table")
+      </details>
+  3. Klik 'Auto ID' > isi field `1. Field = id | Type = string  2. Field = language | Type = string` dan biarkan value kosong > klik 'Save'.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![add field to table](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603456448/add_field_to_table_aj8ktn.png "add field to table")
+      </details>
