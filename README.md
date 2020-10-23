@@ -360,20 +360,36 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
            } else if (referer.indexOf('www.facebook.com') >= 0) {
                res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/'); //memastikan route diakses melalui facebook.com
            }
-           res.sendFile('public/setProfile.html', {root: __dirname}); //mengirimkan file setProfifle.html yang ada di folder public
+           res.render('./setProfile',{appId: APP_ID, title: 'Setting Profile'}); //mengirimkan file setProfile.ejs yang ada di folder views dan data app id juga title
        }
       });
       ```
       <details>
       <summary>Lihat Gambar</summary>
 
-      ![set profile route](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603472269/set_profile_route_yhunqv.png "set profile route")
+      ![set profile route](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603476890/set_profile_route_euhxb0.png "set profile route")
       </details>
-   2. Membuat file `setProfile.html` di folder public, biar lebih gampang cukup duplikasi dari file `example.html` (klik kanan pada file) lalu ubah namanya menjadi 'setProfile.html'.
+   2. Membuat file `setProfile.ejs` di folder views, biar lebih gampang cukup duplikasi dari file `example.ejs` (klik kanan pada file) lalu ubah namanya menjadi 'setProfile.ejs'.
       <details>
       <summary>Lihat Gambar</summary>
 
-      ![duplicate html file](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603472803/duplicate_file_example.html_ctaqpm.png "duplicate html file")
+      ![duplicate ejs file](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603476492/duplicate_file_example.ejs_svomu9.png "duplicate ejs file")
       </details>
-   3. 
+   3. Edit bagian `<script src="src/example.js"></script>` pada file views/setProfile.ejs menjadi :
+            
+      ```html
+         <script src="src/setProfile.js"></script> //load react component dari file setProfile.js
+      ```
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![edit ejs file](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603477605/edit_setProfile.ejs_gumwzw.png "edit ejs file")
+      </details>
+   4. Buat file `setProfile.js` di folder src sebagai react component yang akan di load di file `setProfile.ejs`. biar lebih gampang cukup duplikasi dari file `example.js` (klik kanan pada file) lalu ubah namanya menjadi 'setProfile.js'.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![duplicate js file](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603477464/duplicate_file_example.js_bdk9v6.png "duplicate js file")
+      </details>
       
+  
