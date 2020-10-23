@@ -50,7 +50,7 @@ berikut ini tampilan aplikasi yang akan kita buat :
    * [Alur Setting Profile](#👨‍💼alur-setting-profile)
       * [Menghubungkan Firebase dengan Aplikasi](#menghubungkan-firebase-dengan-aplikasi)
       * [Membuat Tabel Pengguna di Firebase](#membuat-tabel-pengguna-di-firebase)
-      * [Membuat Webview untuk Mendapatkan Data Pengguna dengan ReactJS](#stdin)
+      * [Membuat Webview untuk Mendapatkan Data Pengguna dengan ReactJS](#membuat-webview-untuk-mendapatkan-data-pengguna-dengan-reactjs)
       * [Menyimpan Data ke Firebase](#stdin)
    * [Alur Fitur Translate](#dependency)
       * [Mengatur Intent Pengguna dengan Wit.ai](#stdin)
@@ -340,9 +340,40 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
 
       ![add name to table](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603456448/add_name_to_table_suu312.png "add name to table")
       </details>
-  3. Klik 'Auto ID' > isi field `1. Field = id | Type = string  2. Field = language | Type = string` dan biarkan value kosong > klik 'Save'.
+  3. Klik 'Auto ID' > isi field `1. Field = id , Type = string | 2. Field = language , Type = string` dan biarkan value kosong > klik 'Save'.
       <details>
       <summary>Lihat Gambar</summary>
 
       ![add field to table](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603456448/add_field_to_table_aj8ktn.png "add field to table")
       </details>
+   
+   #### Membuat Webview untuk Mendapatkan Data Pengguna dengan ReactJS
+   kita akan membuat webview untuk menampilkan form pilihan bahasa pengguna dengan React js.
+   
+   1. Membuat route `/setProfile` pada app.js.
+      ```javascript
+         app.get('/setProfile', (req, res, next) => { //set route 
+       let referer = req.get('Referer');
+       if (referer) {
+           if (referer.indexOf('www.messenger.com') >= 0) {
+               res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/'); //memastikan route diakses melalui messenger.com
+           } else if (referer.indexOf('www.facebook.com') >= 0) {
+               res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/'); //memastikan route diakses melalui facebook.com
+           }
+           res.sendFile('public/setProfile.html', {root: __dirname}); //mengirimkan file setProfifle.html yang ada di folder public
+       }
+      });
+      ```
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![set profile route](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603472269/set_profile_route_yhunqv.png "set profile route")
+      </details>
+   2. Membuat file `setProfile.html` di folder public, biar lebih gampang cukup duplikasi dari file `example.html` (klik kanan pada file) lalu ubah namanya menjadi 'setProfile.html'.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![duplicate html file](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603472803/duplicate_file_example.html_ctaqpm.png "duplicate html file")
+      </details>
+   3. 
+      
