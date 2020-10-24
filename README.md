@@ -314,19 +314,14 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
 
      ![create database](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603387722/create_database_jmdhfx.png "create database")
      </details>
-  10. Pada rules kita pilih 'Production Mode' > klik tombol 'Next'.
-      <details>
-      <summary>Lihat Gambar</summary>
-
-      ![rule database](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603388043/rule_cloud_firestore_pxu9rg.png "rule database")
-      </details>
+  10. Pada rules kita pilih 'Test Mode' > klik tombol 'Next'.
   11. Pada location biarkan secara default > klik tombol 'Enable'.
       <details>
       <summary>Lihat Gambar</summary>
 
       ![location database](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603388043/cloud_firestore_location_axigbn.png "location database")
       </details>
-      
+  
   #### Membuat Tabel Pengguna di Firebase
   1. Pada sidebar kiri firebase, pilih menu Develop > Cloud Firestore > klik tombol 'Start Collection'.
      <details>
@@ -350,46 +345,161 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
    #### Membuat Webview untuk Mendapatkan Data Pengguna dengan ReactJS
    kita akan membuat webview untuk menampilkan form pilihan bahasa pengguna dengan React js.
    
-   1. Membuat route `/setProfile` pada app.js.
+   1. Menambahak variabel `APP_ID` pada .env, untuk mendapatkan app id dari aplikasi kita bisa dilihat di dashboard aplikasi facebook developer.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![get app id](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603513718/app_id_xlqaxn.png "get app id")
+      ![set app id variable](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603513718/add_app_id_valiable_jjiohs.png "set app id variable")
+      </details>
+    
+   2. Membuat route get `/setProfile` pada app.js.
       ```javascript
-         app.get('/setProfile', (req, res, next) => { //set route 
-       let referer = req.get('Referer');
-       if (referer) {
-           if (referer.indexOf('www.messenger.com') >= 0) {
-               res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/'); //memastikan route diakses melalui messenger.com
-           } else if (referer.indexOf('www.facebook.com') >= 0) {
-               res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/'); //memastikan route diakses melalui facebook.com
-           }
-           res.render('./setProfile',{appId: APP_ID, title: 'Setting Profile'}); //mengirimkan file setProfile.ejs yang ada di folder views dan data app id juga title
-       }
+         //set route dengan param userID
+         app.get('/setProfile/:userID', (req, res, next) => { 
+           db.doc(`users/${req.params.userID}`).get().then((docSnapshot) => {
+           //mengeck apakah data user telah ada di firebase
+            if(docSnapshot.exists){
+            //mengirimkan file setProfile.ejs yang ada di folder views dan data app id , title dan language
+               res.render('setProfile',{appId: APP_ID, title: 'Setting Profile', lang: docSnapshot.data().language});
+            //jika tidak ada, maka akan memasukkan data user ke firebase
+            }else{
+                        db.collection("users").doc(`${req.params.userID}`).set({
+                id: req.params.userID,
+                language: "-"
+               
+            })
+            .then(function() {
+                res.render('setProfile',{appId: APP_ID, title: 'Setting Profile', lang:'-'});
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+            }
+         });
+         }
       });
       ```
       <details>
       <summary>Lihat Gambar</summary>
 
-      ![set profile route](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603476890/set_profile_route_euhxb0.png "set profile route")
+      ![set profile route](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603513313/set_profile_route_mydjcb.png "set profile route")
       </details>
-   2. Membuat file `setProfile.ejs` di folder views, biar lebih gampang cukup duplikasi dari file `example.ejs` (klik kanan pada file) lalu ubah namanya menjadi 'setProfile.ejs'.
+   3. Membuat file `setProfile.ejs` di folder views, biar lebih gampang cukup duplikasi dari file `example.ejs` (klik kanan pada file) lalu ubah namanya menjadi 'setProfile.ejs'.
       <details>
       <summary>Lihat Gambar</summary>
 
       ![duplicate ejs file](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603476492/duplicate_file_example.ejs_svomu9.png "duplicate ejs file")
       </details>
-   3. Edit bagian `<script src="src/example.js"></script>` pada file views/setProfile.ejs menjadi :
+   4. Edit bagian `<script src="/src/example.js"></script>` pada file views/setProfile.ejs menjadi :
             
       ```html
-         <script src="src/setProfile.js"></script> //load react component dari file setProfile.js
+         <script src="/src/setProfile.js"></script> //load react component dari file setProfile.js
       ```
       <details>
       <summary>Lihat Gambar</summary>
 
       ![edit ejs file](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603477605/edit_setProfile.ejs_gumwzw.png "edit ejs file")
       </details>
-   4. Buat file `setProfile.js` di folder src sebagai react component yang akan di load di file `setProfile.ejs`. biar lebih gampang cukup duplikasi dari file `example.js` (klik kanan pada file) lalu ubah namanya menjadi 'setProfile.js'.
+   5. Buat file `setProfile.js` di folder src sebagai react component yang akan di load di file `setProfile.ejs`. biar lebih gampang cukup duplikasi dari file `example.js` (klik kanan pada file) lalu ubah namanya menjadi 'setProfile.js'.
       <details>
       <summary>Lihat Gambar</summary>
 
       ![duplicate js file](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603477464/duplicate_file_example.js_bdk9v6.png "duplicate js file")
       </details>
+   6. Membuat variabel language yang didapat dari firebase dengan menggunakan `window.language` didalam file `setProfile.ejs`.
+      ```javascript
+      window.lang = <%= lang %>
+      ```
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![add wondow lang variable](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603555076/lang_window_variable_psx7k4.png "add wondow lang variable")
+      </details>
+   7. Membuat react komponen form pada file `setProfile.js`.
+      ```javascript
+      'use strict';
+
+        const e = React.createElement;
+        //membuat komponen form input select
+        function FormInput(props) {
+          return (
+              React.createElement("select", { className: "form-control",onChange: props.handlerLang, value: props.lang , style: { flexGrow: "1", marginTop: '1em'} },
+                 React.createElement("option", { value: '-' }, "-"),
+                 React.createElement("option", { value: 'id' }, "Indonesia"),
+                 React.createElement("option", { value: 'hi' }, "India"),
+                 React.createElement("option", { value: 'th' }, "Thailand"),
+                 React.createElement("option", { value: 'en' }, "United States")
+              )
+            )
+        }
+        //membuat komponen button 'Save'
+        class Button extends React.Component {
+          constructor(props) {
+            super(props);
+
+
+             this.submit = this.submit.bind(this);
+          }
+          //membuat fungsi submit untuk update profile
+          submit () {
+            fetch('https://hayword.glitch.me/setProfile', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({id: window.psid, lang: this.props.lang}),
+        }).then(res => console.log(res))
+          }
+
+          render() {
+
+            return e(
+              'button',
+              { style:{ marginTop: '1em', width: '100%'},className: "btn btn-primary",onClick: ()=> this.submit },'Save'
+            );
+          }
+        }
+        //komponen layout untuk forminput dan button 'Save'
+        class SelectLang extends React.Component {
+          constructor(props) {
+            super(props);
+            this.state = { lang: window.lang };
+            this.handlerLang = this.handlerLang.bind(this);
+          }
+
+          handlerLang (e){
+            this.setState({
+              lang: e.target.value
+            })
+          }
+
+          render() {
+
+            return e(
+              'div',
+              { style: {display: "flex", flexDirection: "column", alignItems: "center",width: "100%"}, className: "container-fluid" },
+
+                  React.createElement(FormInput, {lang: this.state.lang,handlerLang: this.handlerLang},null),
+                  React.createElement(Button, {lang: this.state.lang},null)    
+            );
+          }
+        }
+
+        const dom = document.querySelector('#component');
+        ReactDOM.render(e(SelectLang), dom);
+        ```
+   8. whitelist domain agar webview yang kita buat dapat diakses di messenger dengan cara:
+      buka halaman facebook (FB page) > page settings > advanced messaging > masukkan url app ke whitelist domain
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![whitelist domain](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603569197/whitelist_domain_ifgh1i.png "whitelist domain")
+      </details>
+      
+        
+   #### Mengupdate Data ke Firebase 
+   1. Membuat route post `/setProfile` untuk mengupdate data profile pengguna di firebase.
+      
       
   
