@@ -51,7 +51,8 @@ berikut ini tampilan aplikasi yang akan kita buat :
       * [Menghubungkan Firebase dengan Aplikasi](#menghubungkan-firebase-dengan-aplikasi)
       * [Membuat Tabel Pengguna di Firebase](#membuat-tabel-pengguna-di-firebase)
       * [Membuat Webview untuk Mendapatkan Data Pengguna dengan ReactJS](#membuat-webview-untuk-mendapatkan-data-pengguna-dengan-reactjs)
-      * [Menyimpan Data ke Firebase](#stdin)
+      * [Menyimpan Data ke Firebase](#menyimpan-data-ke-firebase)
+      * [Membuat Tombol Url Webview](#membuat-tombol-url-webview)
    * [Alur Fitur Translate](#dependency)
       * [Mengatur Intent Pengguna dengan Wit.ai](#stdin)
       * [Menggunakan API Wit.ai](#stdin)
@@ -343,6 +344,8 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
       </details>
    
    #### Membuat Webview untuk Mendapatkan Data Pengguna dengan ReactJS
+   
+   
    kita akan membuat webview untuk menampilkan form pilihan bahasa pengguna dengan React js.
    
    1. Menambahak variabel `APP_ID` pada .env, untuk mendapatkan app id dari aplikasi kita bisa dilihat di dashboard aplikasi facebook developer.
@@ -409,7 +412,7 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
       </details>
    6. Membuat variabel language yang didapat dari firebase dengan menggunakan `window.language` didalam file `setProfile.ejs`.
       ```javascript
-      window.lang = <%= lang %>
+      window.language = '<%= lang %>'
       ```
       <details>
       <summary>Lihat Gambar</summary>
@@ -464,7 +467,7 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
         class SelectLang extends React.Component {
           constructor(props) {
             super(props);
-            this.state = { lang: window.lang };
+            this.state = { lang: window.language };
             this.handlerLang = this.handlerLang.bind(this);
           }
 
@@ -496,10 +499,26 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
 
       ![whitelist domain](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603569197/whitelist_domain_ifgh1i.png "whitelist domain")
       </details>
+   
       
         
-   #### Mengupdate Data ke Firebase 
-   1. Membuat route post `/setProfile` untuk mengupdate data profile pengguna di firebase.
+   #### Menyimpan Data ke Firebase 
+   1. Membuat route post `/setProfile` untuk menyimpan data profile pengguna yang telah diperbari ke firebase.
+      ```javascript
+      app.post('/setProfile', (req, res) => { 
+      //update data pengguna  (language) ke firebase
+         db.doc(`users/${req.body.id}`).update({
+        language: `${req.body.lang}`
+      }).then(function() {
+        res.status(200).end()
+      });
+               }
+            );
+      ```
       
-      
-  
+   #### Membuat Tombol Url Webview
+   sekarang kita akan membuat aplikasi kita membalas pesan dengan template button url webview ketika pengguna pertama kali berinteraksi dengan aplikasi kita (Get Started Button), sebelumnya kita telah mengatur postback untuk Get Started adalah 'MULAI'.
+   
+   1. membuat kondisi jika ada pesan dengan postback 'MULAI'  maka akan kita balas dengan template button url webview.
+   
+   
