@@ -60,9 +60,8 @@ berikut ini tampilan aplikasi yang akan kita buat :
    * [Alur Fitur HayWord](#🕹alur-fitur-hayword)
       * [Membuat Menu HayWord Dengan Template Generic](#membuat-menu-hayword-dengan-template-generic)
       * [Menggunakan API WordsAPI](#menggunakan-api-wordsapi)
-      * [Merubah Format Teks Jawaban Seperti Hangman](#stdin)
-      * [Memberikan Petunjuk untuk Jawaban](#arsitektur-aplikasi-yang-akan-dibuat)
-      * [Memeriksa Jawaban Pengguna](#stdin)
+      * [Memberikan Petunjuk dan Memeriksa Jawaban](#arsitektur-aplikasi-yang-akan-dibuat)
+      
 <!--te-->
 
 
@@ -659,7 +658,7 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
 
       ![select_just_translated_api_plan](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603607869/select_just_translated_api_plan_tt3zfm.png "select_just_translated_api_plan")
       </details>
-   4. Buat variabel `TRANSLATED_API_KEY` pada file .env, dan isi variabel tersebut dengan api key yang ada di Just Translated RapidAPI.
+   4. Buat variabel `RAPID_API_KEY` pada file .env, dan isi variabel tersebut dengan api key yang ada di Just Translated RapidAPI.
       <details>
       <summary>Lihat Gambar</summary>
 
@@ -681,7 +680,7 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
             qs: { text: text, lang_from: "en", lang_to: lang },
             headers: {
               "x-rapidapi-host": "just-translated.p.rapidapi.com",
-              "x-rapidapi-key": process.env.TRANSLATED_API_KEY,
+              "x-rapidapi-key": process.env.RAPID_API_KEY,
               useQueryString: true
             }
           };
@@ -837,5 +836,107 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
    sekarang kita akan menggunakan API 'WordsAPI' yang ada di RapidAPI untuk menerjemahkan kata yang diinputkan user di chat.
       
    1. Buka halaman [WordsAPI RapidAPI](https://rapidapi.com/dpventures/api/wordsapi/endpoints), pastikan sudah login.
-   2. Sama seperti langkah penggunaan Just Translated API, 
+   2. Sama seperti langkah penggunaan Just Translated API, subscribe to test > pilih basic plan.
+   3. Salin contoh code yang disediakan RapidAPI, dibagian kanan pilih bahasa pemrograman Node.js > Request.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![copy_wordsapi_code](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603643999/copy_wordsapi_code_n12hax.png "copy_wordsapi_code")
+      </details>
+   4. Buat fungsi `getWord()` dalam file app.js, dari code yang disalin sebelumnya untuk mendapatkan kata yang akan ditebak pengguna.
    
+      ```javascript
+      function getWord() {
+           return new Promise((resolve, reject) => {
+             var options = {
+               method: 'GET',
+               url: 'https://wordsapiv1.p.rapidapi.com/words/',
+               qs: {
+               //mengambil kata secara random
+                 random: 'true',
+                 //minimal kata yang dipilih 4 huruf
+                 lettersMin: '4',
+                 //maksimal kata yang dipilih 8 huruf
+                 lettersMax: '8',
+                 //tingkat keumuman kata minimal 4.05 dan maksimal 8.03
+                 frequencyMin: '4.05',
+                 frequencyMax: '8.03',
+                 //kata memiliki atribut definis,jenis kata,sinonim
+                 hasDetails: 'definitions,partofspeech,synonyms'
+               },
+               headers: {
+                 'x-rapidapi-host': 'wordsapiv1.p.rapidapi.com',
+                 'x-rapidapi-key': process.env.RAPID_API_KEY,
+                 useQueryString: true
+               }
+             };
+             request(options, function (error, response, body) {
+               if (error) reject(error);
+               const bodyParse = JSON.parse(body)
+               console.log(bodyParse);
+               const word = bodyParse.word;
+               const def = bodyParse.results[0].definition || '';
+               const wordType = bodyParse.results[0].partOfSpeech || '';
+               const synonym = bodyParse.results[0].synonyms || '';
+               //mengembalikan nilai dari kata yang ditebak, definis, jenis kata, dan sinonim
+               resolve([word, def, wordType, synonym])
+             });
+           })
+         }
+      ```
+   5. Membuat variabel `var modeHayWord; var word; var def; var wordType; var synonym; var censored; var featureHayWord=[];` secara global.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![variabel_haywor](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603653616/variabel_hayword_mwyvoo.png "variabel_haywor")
+      </details>
+   6. Membuat respon postback `PLAY_HAYWORD` untuk memanggil fungsi getWord().
+      ```javascript
+      //cek jika payload sama dengan PLAY_HAYWORD
+          else if(payload === 'PLAY_HAYWORD'){
+          //set variable modeHayWord menjadi true
+              modeHayWord = true;
+              //memanggil fungsi getWord
+               getWord().then(data => {
+               //memberikan nilai pada variabel sesuai dengan data yang didapat dari fungsi getWord
+                  word = data[0];
+                  def = data[1];
+                  wordType = data[2];
+                  synonym = data[3];
+                //membuat format kata menjadi terlihat di awal dan akhir hurug misal F_ _ _ _ _ _ K (FACEBOOK)
+                  var regex = /(?<!^).(?!$)/g;
+                   censored = word.replace(regex, ' _ ')
+                  
+                //membuat response quick replies sebagai petunjuk pengguna untuk menebak kata
+                 if (wordType != '') {
+                    featureHayWord.push({
+                      content_type: "text",
+                      title: "Type of Word",
+                      payload: "WORD_TYPE",
+                    })
+                  }
+                  if (def != '') {
+                    featureHayWord.push({
+                      content_type: "text",
+                      title: "Definition",
+                      payload: "DEFINITION",
+                    })
+                  }
+                  if (synonym != '') {
+                    featureHayWord.push({
+                      content_type: "text",
+                      title: "Synonym",
+                      payload: "SYNONYM",
+                    })
+                  }
+                  featureHayWord.push({
+                    content_type: "text",
+                      title: "🥺 Surrender",
+                      payload: "SURR",
+                  })
+
+                 response = {text: censored, quick_replies: featureHayWord}
+                 return callSendAPI(sender_psid, response, "RESPONSE");
+               })
+            }
+       ```
