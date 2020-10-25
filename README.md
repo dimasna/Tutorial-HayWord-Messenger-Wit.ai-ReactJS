@@ -213,7 +213,7 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
  
  <p align="center">
  
- <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_1,c_scale,bo_4px_solid_grey/v1603309069/welcome_screen_result_qwk21e.png">
+ <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_0.7,c_scale,bo_4px_solid_grey/v1603309069/welcome_screen_result_qwk21e.png">
   
  </p>
  
