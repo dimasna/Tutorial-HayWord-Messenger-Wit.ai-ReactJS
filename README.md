@@ -214,7 +214,7 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
  
  <p align="center">
  
- <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_0.5,c_scale,bo_4px_solid_grey/v1603309069/welcome_screen_result_qwk21e.png">
+ <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_1,c_scale,bo_4px_solid_grey/v1603309069/welcome_screen_result_qwk21e.png">
   
  </p>
  
@@ -260,7 +260,7 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
  ## 👨‍💼Alur Setting Profile
  <p align="center">
  
- <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_0.5,c_scale,bo_4px_solid_grey/v1603575202/IMG_4373_ft5fkx.jpg">
+ <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_0.3,c_scale,bo_4px_solid_grey/v1603575202/IMG_4373_ft5fkx.jpg">
   
  </p>
  di alur ini kita akan mengambil informasi bahasa asli pengguna untuk keperluan fitur translate. 
@@ -569,7 +569,7 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
    ## 🈸Alur Fitur Translate
    <p align="center">
  
-   <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_0.5,c_scale,bo_4px_solid_grey/v1603629434/translate_feature_uwtxia.jpg">
+   <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_0.3,c_scale,bo_4px_solid_grey/v1603629434/translate_feature_uwtxia.jpg">
 
    </p>
    kali ini kita akan membuat fitur translate dalam chat dengan menerjemahkan kata yang dimaksud (intent) user menggunakan NLP Wit.ai.
@@ -700,11 +700,15 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
 
       ![translate_function](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603618369/translate_function_xd1kly.png "translate_function")
       </details>
-   7. Untuk memanggil fungsi translate dibutuhkan parameter teks dan language (bahasa pengguna), supaya tidak terjadi banyak request get data pengguna di firebase, maka buatlah variabel global language `var language`, lalu isi variabel tersebut pada saat pengguna menambahkan dengan `language = docSnapshot.data().language` dan memperbarui datanya dengan `language = req.body.lang` .
+   7. Untuk memanggil fungsi translate dibutuhkan parameter teks dan language (bahasa pengguna), supaya tidak terjadi banyak request get data pengguna di firebase, maka buatlah variabel global language `var language`, lalu isi variabel tersebut pada saat pengguna menambahkan dengan `language = docSnapshot.data().language` dan memperbarui datanya dengan `language = req.body.lang`.
+       
+      <details>
        <summary>Lihat Gambar</summary>
 
       ![var_lang](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603621556/var_lang_h3etrc.png "var_lang")
+      
       ![assign_language_variable](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603621728/assign_language_variable_gzywcr.png "assign_language_variable")
+      
       ![update_language_variable](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603622016/update_language_variable_ptlrsy.png "update_language_variable")
       </details>
    
@@ -750,10 +754,12 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
    #### Membuat Menu HayWord dengan Template Generic
    <p align="center">
  
-   <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_0.5,c_scale,bo_4px_solid_grey/v1603634150/menu_hayword_p2pimc.jpg">
+   <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_0.3,c_scale,bo_4px_solid_grey/v1603634150/menu_hayword_p2pimc.jpg">
 
    </p>
-   1. Buat variabel `menuPayload` untuk template menu dengan tipe Generic
+   
+   1. Buat variabel `menuPayload` untuk template menu dengan tipe Generic.
+   
       ```javascript
            let menuPayload = {
            attachment:{
@@ -776,14 +782,16 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
              ]
            }
          }
-       }
-      ```
+        }
+       ```
       <details>
       <summary>Lihat Gambar</summary>
 
       ![menuPayload](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603632844/menuPayload_ttgukv.png "menuPayload")
       </details>
+      
    2. Tambahkan intruksi menu ketika pengguna selesai menyimpan profilenya.
+   
       ```javascript
       //ketika pengguna menyimpan profile
        app.post("/setProfile", (req, res) => {
@@ -805,6 +813,7 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
             res.status(200).end();
            });
        });
+       
        ```
        <details>
        <summary>Lihat Gambar</summary>
@@ -812,12 +821,14 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
       ![add_instructions](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603633291/add_instructions_g853du.png "add_instructions")
       </details>
    3. Menampilkan template menu dari menuPayload ketika pengguna mengetikkan `menu` di messenger pada fungsi handleMessage.
+   
       ```javascript
       else if(received_message.text.toLowerCase() == 'menu'){
       callSendAPI(sender_psid, menuPayload)
       }
       ```
-       <summary>Lihat Gambar</summary>
+      <details>
+      <summary>Lihat Gambar</summary>
 
       ![menu_Instruction](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603633897/menu_Instruction_sqpjri.png "menu_Instruction")
       </details>
