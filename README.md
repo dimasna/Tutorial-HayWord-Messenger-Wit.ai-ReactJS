@@ -65,6 +65,7 @@ berikut ini tampilan aplikasi yang akan kita buat :
       * [Membuat Menu HayWord Dengan Template Generic](#membuat-menu-hayword-dengan-template-generic)
       * [Menggunakan API WordsAPI](#menggunakan-api-wordsapi)
       * [Memberikan Petunjuk dan Memeriksa Jawaban Pengguna](#memberikan-petunjuk-dan-memeriksa-jawaban-pengguna)
+   * [Penutup](#penutup)
       
 <!--te-->
 
@@ -1027,3 +1028,12 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
 
           }
           ```
+  ## 🤞Penutup
+  Selamat telah menyelesaikan tutorial cara membuat aplikasi HayWord dengan FB Messenger, Wit.ai dan React JS. Untuk final code aplikasi messenger dan wit.ai bisa didapatkan di repositori ini.
+  
+  Code Inspiration : 
+  https://github.com/fbsamples/messenger-platform-samples by developers.facebook.com
+  Facebook Messenger Documentation
+  Wit.ai Documentation
+  ReactJS Documentation
+  Firebase Documentation
