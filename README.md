@@ -60,7 +60,7 @@ berikut ini tampilan aplikasi yang akan kita buat :
    * [Alur Fitur HayWord](#🕹alur-fitur-hayword)
       * [Membuat Menu HayWord Dengan Template Generic](#membuat-menu-hayword-dengan-template-generic)
       * [Menggunakan API WordsAPI](#menggunakan-api-wordsapi)
-      * [Memberikan Petunjuk dan Memeriksa Jawaban](#arsitektur-aplikasi-yang-akan-dibuat)
+      * [Memberikan Petunjuk dan Memeriksa Jawaban Pengguna](#memberikan-petunjuk-dan-memeriksa-jawaban-pengguna)
       
 <!--te-->
 
@@ -890,7 +890,7 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
 
       ![variabel_haywor](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603653616/variabel_hayword_mwyvoo.png "variabel_haywor")
       </details>
-   6. Membuat respon postback `PLAY_HAYWORD` untuk memanggil fungsi getWord().
+   6. Membuat respon postback `PLAY_HAYWORD` pada fungsi handlePostback() untuk memanggil fungsi getWord().
       ```javascript
       //cek jika payload sama dengan PLAY_HAYWORD
           else if(payload === 'PLAY_HAYWORD'){
@@ -940,3 +940,86 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
                })
             }
        ```
+  #### Memberikan Petunjuk dan Memeriksa Jawaban Pengguna
+  sekarang kita akan memberikan petunjuk kepada pengguna dan memeriksa jawaban pengguna apakah benar atau salah.
+  
+  1. Memperbarui fungsi handleMessage() untuk menambahkan respon petunjuk dan hasil jawaban.
+     ```javascript
+        async function handleMessage(sender_psid, received_message) {
+        let response;
+
+        // Checks if the message contains text
+        if (received_message.text) {
+          // Create the payload for a basic text message, which
+          // will be added to the body of our request to the Send API
+          console.log(received_message.nlp.entities);
+          const objNlp = received_message.nlp.entities;
+
+          if (
+            objNlp.intent &&
+            objNlp.intent[0].value == "translate" &&
+            objNlp.intent[0].confidence > 0.8 &&
+            objNlp.phrase_to_translate[0].confidence > 0.8
+          ) {
+            language = language
+              ? language
+              : await db
+                  .doc(`users/${sender_psid}`)
+                  .get()
+                  .then(docSnapshot => {
+                    if (docSnapshot.exists) {
+                      console.log("language from here");
+                      return docSnapshot.data().language;
+                    }
+                  });
+
+            let tr = await translate(objNlp.phrase_to_translate[0].value, language);
+
+            response = {
+              text: tr
+            };
+            return callSendAPI(sender_psid, response);
+          }
+          else if(received_message.text.toLowerCase() == 'menu'){
+            response = menuPayload
+            return callSendAPI(sender_psid, response);
+          }
+          //mengecek apakah pengguna sedang dalam sesi HayWord
+          if(modeHayWord){
+              if(received_message.quick_reply){
+                if(received_message.quick_reply.payload == 'WORD_TYPE'){
+                  response = {text: wordType}
+                }
+                else if(received_message.quick_reply.payload == 'DEFINITION'){
+                  response = {text: def}
+                }else if (received_message.quick_reply.payload == "SYNONYM") {
+                  response = { text: synonym };
+                }else if (received_message.quick_reply.payload == "SURR") {
+                 featureHayWord = []
+                 return callSendAPI(sender_psid, { text: "the Answer is "+word }).then(() =>
+                   callSendAPI(sender_psid, {text: 'don\'t give up 💪'})
+                 );
+               }
+                return callSendAPI(sender_psid, response);
+              }
+              else if(received_message.text){
+              //mengeck jawaban pengguna apakah benar atau salah
+                if(received_message.text.toLowerCase()== word){
+                  modeHayWord = false;
+                  featureHayWord = []
+                   response = { text: 'Right Answer '}
+                  return callSendAPI(sender_psid, response);
+                }
+                else{
+                response = {text: censored, quick_replies: featureHayWord}
+                return callSendAPI(sender_psid, {text: 'Wrong Answer'}).then(()=> callSendAPI(sender_psid,response,"RESPONSE"))
+
+                  }
+                  }
+              }
+            }
+
+
+
+          }
+          ```
