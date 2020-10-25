@@ -53,9 +53,9 @@ berikut ini tampilan aplikasi yang akan kita buat :
       * [Membuat Webview untuk Mendapatkan Data Pengguna dengan ReactJS](#membuat-webview-untuk-mendapatkan-data-pengguna-dengan-reactjs)
       * [Menyimpan Data ke Firebase](#menyimpan-data-ke-firebase)
       * [Membuat Tombol Url Webview](#membuat-tombol-url-webview)
-   * [Alur Fitur Translate](#dependency)
-      * [Mengatur Intent Pengguna dengan Wit.ai](#stdin)
-      * [Menggunakan API Wit.ai](#stdin)
+   * [Alur Fitur Translate](#🈸alur-fitur-translate)
+      * [Mengatur Intent Pengguna dengan Wit.ai](#mengatur-intent-pengguna-dengan-wit.ai)
+      * [Menghubungkan Wit.ai dengan FB Messenger](#menghubungkan-wit.ai-dengan-fb-messenger)
       * [Menggunakan API Translate](#stdin)
       * [Membuat Fungsi Translate](#stdin)
    * [Alur Fitur HayWord](#dependency)
@@ -259,8 +259,14 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
     </details>
  
  ## 👨‍💼Alur Setting Profile
+ <p align="center">
  
+ <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_0.5,c_scale,bo_4px_solid_grey/v1603575202/IMG_4373_ft5fkx.jpg">
+  
+ </p>
  di alur ini kita akan mengambil informasi bahasa asli pengguna untuk keperluan fitur translate. 
+ 
+ 
  
  #### Menghubungkan Firebase dengan Aplikasi
  sebelum kita mengambil informasi pengguna, terlebih dahulu kita harus membuat database tempat penyimpanan informasi tersebut dan disini kita akan menggunakan firebase sebagai   databasenya.
@@ -519,6 +525,116 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
    #### Membuat Tombol Url Webview
    sekarang kita akan membuat aplikasi kita membalas pesan dengan template button url webview ketika pengguna pertama kali berinteraksi dengan aplikasi kita (Get Started Button), sebelumnya kita telah mengatur postback untuk Get Started adalah 'MULAI'.
    
-   1. membuat kondisi jika ada pesan dengan postback 'MULAI'  maka akan kita balas dengan template button url webview.
+   1. Membuat kondisi jika ada pesan dengan postback 'MULAI'  maka akan kita balas dengan template button url webview.
+      ```javascript
+         //fungsi untuk manajemen pesan tipe postback
+         function handlePostback(sender_psid, received_postback) {
+  
+              let response;
+             // mendapatkan payload postback
+             let payload = received_postback.payload;
+             //mengecek apakah payload postback sama dengan 'MULAI' ( pengguna klik tombol Get Started Button )
+           if(payload === 'MULAI'){
+           
+           //memberikan response template button 
+               response = {
+                   attachment: {
+                       type: "template",
+                       payload: {
+                           template_type: "button",
+                           text: "Hello, welcome to HayWord. please set your profile before access our features",
+                           buttons: [{
+                               type: "web_url",
+                               url: "https://hayword.glitch.me/setProfile/"+sender_psid,
+                               title: "Set Profile",
+                               webview_height_ratio: "compact",
+                               messenger_extensions: true
+                           }]
+                       }
+                   }
+               }
+             }
+             // mengirimkan pesan dengan respon yang telah kita buat diatas
+             callSendAPI(sender_psid, response);
+           }
+        ```
+   <details>
+      <summary>Lihat Gambar</summary>
+
+   ![button url (https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603574549/buton_web_url_arbvok.png "button url ")
+   </details>
    
+   ## 🈸Alur Fitur Translate
+   kali ini kita akan membuat fitur translate dalam chat dengan menerjemahkan kata yang dimaksud (intent) user menggunakan NLP Wit.ai.
    
+   #### Mengatur Intent Pengguna dengan Wit.ai
+   1. Buka halaman [Apps Wit.ai](https://wit.ai/apps), pastikan sudah login menggunakan akun facebook.
+   2. Buat projek aplikasi wit.ai
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![create wit.ai app](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603597940/create_witai_app_vmp3yg.png "create wit.ai app")
+      </details>
+   3. Masukkan utterance `Translate <contoh kata/kalimat>` misal 'Translate community' > buat intent 'translate'.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![create utterance and intent](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603598178/create_utterance_and_intent_goesao.png "create utterance and intent")
+      </details>
+   4. Membuat entity kata yang akan diterjemahkan dengan cara blok kata `Community` > pilih `wit/phrase_to_translate`.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![make an entity](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603598522/make_an_entity_rhsssl.png "make an entity")
+      </details>
+   5. Klik tombol 'Train and Validate' untuk melatih dan validasi utterance,intent dan entity yang kita masukkan.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![train_and_validate](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603598641/train_and_validate_p3sj3m.png "train_and_validate")
+      </details>
+   6. Latih terus aplikasi wit.ai kita dengan memasukkan berbagai macam kemungkinan utterance yang digunakan pengguna untuk menerjemahkan.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![train_again](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603598864/train_again_w9cdj4.png "train_again")
+      ![utterances](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603599136/utterances_hspjzy.png "utterances")
+      </details>
+      
+   #### Menghubungkan Wit.ai dengan FB Messenger
+   setelah kita melatih aplikasi wit.ai selanjutnya kita hubungkan dengan aplikasi di fb messenger kita.
+   
+   1. Buka halaman dashboard aplikasi facebook developer yang telah kita buat > masuk ke 'Messenger Setting' > pada bagian Built-In NLP pilih halaman aplikasi.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![connect_to_wit.ai](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603600163/connect_to_wit.ai_laucxq.png "connect_to_wit.ai")
+      </details>
+   2. Pada 'Default Language Model' pilih `Custom Model`.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![custom_model](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603600727/custom_model_f6tbok.png "custom_model")
+      </details>
+   3. Klik tombil 'Link to existing Wit App'.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![Link_to_existing_wit_app](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603600727/Link_to_existing_wit_app_kczrzx.png "Link_to_existing_wit_app")
+      </details>
+   4. Masukkan server access token app wit.ai yang didapat di halaman setting aplikasi wit.ai.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![get_server_access_token_wit](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603601057/get_server_access_token_wit_vugxgh.png "get_server_access_token_wit")
+      ![add_server_access_token_wit](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603601213/add_server_access_token_wit_gnpt2x.png "add_server_access_token_wit")
+       </details>
+   5. Setelah berhasil terhubung, setiap pesan pengguna yang masuk ke aplikasi kita akan terproses melalui wit.ai dan akan mengirimkan object nlp kedalam request webhook seperti berikut :
+      ```JSON
+      //console.log(received_message.nlp.entitites)
+      {"intent":[{"confidence":0.99694817127169,"value":"translate"}],"phrase_to_translate":[{"suggested":true,"confidence":0.91449405248263,"value":"home","type":"value"}]}
+      ```
+      
+   
+       
+       
