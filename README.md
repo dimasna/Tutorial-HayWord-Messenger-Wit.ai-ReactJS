@@ -56,8 +56,7 @@ berikut ini tampilan aplikasi yang akan kita buat :
    * [Alur Fitur Translate](#🈸alur-fitur-translate)
       * [Mengatur Intent Pengguna dengan Wit.ai](#mengatur-intent-pengguna-dengan-wit.ai)
       * [Menghubungkan Wit.ai dengan FB Messenger](#menghubungkan-wit.ai-dengan-fb-messenger)
-      * [Menggunakan API Translate](#stdin)
-      * [Membuat Fungsi Translate](#stdin)
+      * [Menggunakan API Translate](#menggunakan-api-translate)
    * [Alur Fitur HayWord](#dependency)
       * [Membuat Menu HayWord](#stdin)
       * [Menggunakan API WordAPI](#stdin)
@@ -636,5 +635,55 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
       ```
       
    
-       
-       
+   #### Menggunakan API Translate
+   sekarang kita akan menggunakan API 'Just Translated' yang ada di RapidAPI untuk menerjemahkan kata yang diinputkan user di chat.
+   
+   1. Buka halaman [Just Translated RapidAPI](https://rapidapi.com/lebedev.str/api/just-translated/endpoints), pastikan sudah login
+   2. Klik tombol 'Subscribe to Test'.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![subscribe_translate_api](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603607762/subscribe_translate_api_c7lkrv.png "subscribe_translate_api")
+      </details>
+   3. Pilih Plan 'Basic'.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![select_just_translated_api_plan](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603607869/select_just_translated_api_plan_tt3zfm.png "select_just_translated_api_plan")
+      </details>
+   4. Buat variabel `TRANSLATED_API_KEY` pada file .env, dan isi variabel tersebut dengan api key yang ada di Just Translated RapidAPI.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![get_translate_api_key](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603608286/get_translate_api_key_b1vtaw.png "get_translate_api_key")
+      </details>
+   5. Salin contoh code yang disediakan RapidAPI, dibagian kanan pilih bahasa pemrograman Node.js > Request.
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![select_program_lang](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603611125/select_program_lang_vdwja2.png "select_program_lang")
+      </details>
+   5. Buat fungsi `translate(text, lang)` untuk menerjemahkan kata.
+      ```javascript
+      async function translate(text, lang) {
+        return new Promise((resolve, reject) => {
+          var options = {
+            method: "GET",
+            url: "https://just-translated.p.rapidapi.com/",
+            qs: { text: text, lang_from: "en", lang_to: lang },
+            headers: {
+              "x-rapidapi-host": "just-translated.p.rapidapi.com",
+              "x-rapidapi-key": process.env.TRANSLATED_API_KEY,
+              useQueryString: true
+            }
+          };
+
+          request(options, function(error, response, body) {
+            if (error) reject(error);
+            let res = JSON.parse(body);
+
+            resolve(res.text[0]);
+          });
+        });
+      }
+      ```
