@@ -1,37 +1,36 @@
-# 🥇Studi Kasus Membuat Aplikasi HayWord dengan FB Messenger, Wit.ai dan React JS
+# 🥇Case Study for Making HayWord App Powered by FB Messenger, Wit.ai and ReactJS
 
 
-## 🖐Pendahuluan
+## 🖐Introduction
 
-Halo kawan-kawan, pada kesempatan kali ini saya akan berbagi tutorial cara membuat aplikasi HayLingo versi mini (HayWord) dengan FB messenger, Wit.ai (NLP) dan React JS. Sebelumnya HayLingo meraih juara 1 lomba hackathon facebook messenger 2020 dengan menawarkan fitur HayBot, HayFriend, dan HayWord. Di studi kasus kali ini kita akan berfokus membuat HayWord yaitu fitur untuk membantu pengguna memperkaya kosa kata bahasa inggrisnya dengan gamifikasi tebak kata dengan berbagai macam petunjuk yang diberikan seperti sinonim, jenis kata dan definisi serta fitur translate. 
+Hello buddies, on this occasion, I will share how to create a mini version of the HayLingo application (HayWord) with FB messenger, Wit.ai (NLP), and React JS. Previously, HayLingo won 1st place in the 2020 Facebook messenger hackathon by offering HayBot, HayFriend, and HayWord features. In this case study, we will assess, making HayWord a feature to help users enrich their English words by gamification of guessing words with various kinds of clues, such as synonyms, word types, definitions, and translation features. 
 
-berikut ini tampilan aplikasi yang akan kita buat :
 
-#### Mengapa Harus Buat Aplikasi di Facebook Messenger ?
-👨‍👨‍👦‍👦 Digunakan oleh 1,3 Milyar pengguna global dan diperkirakan 2,4 Milyar pada 2021
+#### Why You Should Create Applications on Facebook Messenger ?
+👨‍👨‍👦‍👦 Used by 1.3 Billion global users and an estimated 2.4 Billion by 2021.
 
-📣 Marketing melalui FB Messenger 70%  (Open Rate) lebih besar daripada email marketing 
+📣 Marketing through FB Messenger is 70% (Open Rate) greater than email marketing. 
 
-📥 Menjadi platform messaging teratas di US dengan jumlah unduh bulanan sebesar 2 juta unduhan
+📥 It is the top messaging platform in the US with monthly downloads of 2 million downloads
 
 [Sumber](https://review42.com/facebook-messenger-statistics/)
 
 
-#### Apa yang akan kita pelajari
-- FB Messenger (membuat aplikasi chatbot, implementasi messenger extension webview, quick replies, generic template)
-- Wit.ai (membuat intent, entity, training, integrasi ke messenger)
-- ReactJS (integrasi messenger, membuat react komponen, state dan props)
-- Firebase (integrasi messenger, membuat dan mengupdate data pengguna)
-- Integrasi API ( Translate API, WordsAPI)
+#### What are we going to learn
+- FB Messenger (create a chatbot application, implement the messenger extension webview, quick replies, generic templates)
+- Wit.ai (create user intentions, entities, training, integration to the messenger)
+- ReactJS (Messenger integration, creating React components, state, and props)
+- Firebase (Messenger integration, creating and updating user data)
+- API integration (Translate API, WordsAPI)
 
-#### Hal-hal yang harus dipersiapkan
- ☑ Akun Facebook untuk login di [FB developer](https://developers.facebook.com/), [Wit.ai](https://wit.ai/), [Glitch](https://glitch.com/), [RapidAPI](https://rapidapi.com/)
+#### Things to prepare
+ ☑ Facebook account to login to [FB developer](https://developers.facebook.com/), [Wit.ai](https://wit.ai/), [Glitch](https://glitch.com/), [RapidAPI](https://rapidapi.com/)
  
- ☑ Akun [Firebase](https://firebase.google.com/)
+ ☑ [Firebase Account](https://firebase.google.com/)
  
- ☑ Komputer/Laptop
+ ☑ Computer/Laptop
  
- ☑ Koneksi Internet
+ ☑ Internet Connection
  
  
 
