@@ -57,9 +57,9 @@ berikut ini tampilan aplikasi yang akan kita buat :
       * [Mengatur Intent Pengguna dengan Wit.ai](#mengatur-intent-pengguna-dengan-wit.ai)
       * [Menghubungkan Wit.ai dengan FB Messenger](#menghubungkan-wit.ai-dengan-fb-messenger)
       * [Menggunakan API Translate](#menggunakan-api-translate)
-   * [Alur Fitur HayWord](#dependency)
-      * [Membuat Menu HayWord](#stdin)
-      * [Menggunakan API WordAPI](#stdin)
+   * [Alur Fitur HayWord](#🕹alur-fitur-hayword)
+      * [Membuat Menu HayWord Dengan Template Generic](#membuat-menu-hayword-dengan-template-generic)
+      * [Menggunakan API WordsAPI](#menggunakan-api-wordsapi)
       * [Merubah Format Teks Jawaban Seperti Hangman](#stdin)
       * [Memberikan Petunjuk untuk Jawaban](#arsitektur-aplikasi-yang-akan-dibuat)
       * [Memeriksa Jawaban Pengguna](#stdin)
@@ -515,6 +515,9 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
          db.doc(`users/${req.body.id}`).update({
         language: `${req.body.lang}`
       }).then(function() {
+      //mengirim pesan ke pengguna bahwa data telah berhasil disimpan
+      callSendAPI(req.body.id, {
+        text: 'Your Profile has Updated' })
         res.status(200).end()
       });
                }
@@ -564,6 +567,11 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
    </details>
    
    ## 🈸Alur Fitur Translate
+   <p align="center">
+ 
+   <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_0.5,c_scale,bo_4px_solid_grey/v1603629434/translate_feature_uwtxia.jpg">
+
+   </p>
    kali ini kita akan membuat fitur translate dalam chat dengan menerjemahkan kata yang dimaksud (intent) user menggunakan NLP Wit.ai.
    
    #### Mengatur Intent Pengguna dengan Wit.ai
@@ -637,8 +645,8 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
    
    #### Menggunakan API Translate
    sekarang kita akan menggunakan API 'Just Translated' yang ada di RapidAPI untuk menerjemahkan kata yang diinputkan user di chat.
-   
-   1. Buka halaman [Just Translated RapidAPI](https://rapidapi.com/lebedev.str/api/just-translated/endpoints), pastikan sudah login
+      
+   1. Buka halaman [Just Translated RapidAPI](https://rapidapi.com/lebedev.str/api/just-translated/endpoints), pastikan sudah login.
    2. Klik tombol 'Subscribe to Test'.
       <details>
       <summary>Lihat Gambar</summary>
@@ -663,7 +671,7 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
 
       ![select_program_lang](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603611125/select_program_lang_vdwja2.png "select_program_lang")
       </details>
-   5. Buat fungsi `translate(text, lang)` untuk menerjemahkan kata.
+   6. Buat fungsi `translate(text, lang)` dari code yang disalin sebelumnya untuk menerjemahkan kata dalam file app.js dan edit seperi berikut.
       ```javascript
       async function translate(text, lang) {
         return new Promise((resolve, reject) => {
@@ -687,3 +695,136 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
         });
       }
       ```
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![translate_function](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603618369/translate_function_xd1kly.png "translate_function")
+      </details>
+   7. Untuk memanggil fungsi translate dibutuhkan parameter teks dan language (bahasa pengguna), supaya tidak terjadi banyak request get data pengguna di firebase, maka buatlah variabel global language `var language`, lalu isi variabel tersebut pada saat pengguna menambahkan dengan `language = docSnapshot.data().language` dan memperbarui datanya dengan `language = req.body.lang` .
+       <summary>Lihat Gambar</summary>
+
+      ![var_lang](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603621556/var_lang_h3etrc.png "var_lang")
+      ![assign_language_variable](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603621728/assign_language_variable_gzywcr.png "assign_language_variable")
+      ![update_language_variable](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603622016/update_language_variable_ptlrsy.png "update_language_variable")
+      </details>
+   
+   8. Memperbarui fungsi `handleMessage` untuk memanggil fungsi translate ketika nlp(wit.ai) confidence intent `translate` dan entity `phrase_to_translate` > 0.8.
+      ```javascript
+         async function handleMessage(sender_psid, received_message) {
+         let response;
+
+         // mengecek ketika message mengandung teks
+         if (received_message.text) {
+           //membuat variabel dari objek yang dikirimkan nlp wit.ai
+           const objNlp = received_message.nlp.entities;
+
+           //mengecek apakah terdapat intent translate dengan confidence lebih dari 0.8, begitu juga dengan confidence entity phrase_to_translate
+           if (
+             objNlp.intent &&
+             objNlp.intent[0].value == "translate" &&
+             objNlp.intent[0].confidence > 0.8 &&
+             objNlp.phrase_to_translate[0].confidence > 0.8
+           ) {
+             //cek apakah variabel language sudah terisi, kalau belum akan mengambil data dari firebase
+            language = language ? language : await db.doc(`users/${sender_psid}`).get().then(docSnapshot => {
+             if (docSnapshot.exists) {
+
+                      return docSnapshot.data().language
+               }});
+             //memanggil fungsi translate
+             let tr = await translate(objNlp.phrase_to_translate[0].value, language);
+             //memperbarui variabel response dengan hasil dari fungsi translate
+             response = {
+               text: tr
+             };
+           }
+         }
+
+         // mengirim respon ke pengguna
+         callSendAPI(sender_psid, response);
+            }
+        ```
+   ## 🕹 Alur Fitur HayWord
+   kali ini kita akan membuat fitur HayWord dengan menggamifikasi pengguna untuk menebak kata berdasarkan petunjuk definisi, sinonim dan jenis kata.
+   
+   #### Membuat Menu HayWord dengan Template Generic
+   <p align="center">
+ 
+   <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_0.5,c_scale,bo_4px_solid_grey/v1603634150/menu_hayword_p2pimc.jpg">
+
+   </p>
+   1. Buat variabel `menuPayload` untuk template menu dengan tipe Generic
+      ```javascript
+           let menuPayload = {
+           attachment:{
+           type:"template",
+           payload:{
+             template_type:"generic",
+             elements:[
+                {
+                 title:"HayWord", //judul 
+                 image_url:"https://res.cloudinary.com/dzrwauiut/image/upload/v1603631463/HayWord_qj0hzv.png", //image thumbnail
+                 subtitle:"enrich your vocabulary through a fun way", //sub judul
+                 buttons:[
+                   {
+                     type:"postback",
+                     title:"🕹 Play",
+                     payload:"PLAY_HAYWORD" //postback
+                   }              
+                 ]      
+               }
+             ]
+           }
+         }
+       }
+      ```
+      <details>
+      <summary>Lihat Gambar</summary>
+
+      ![menuPayload](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603632844/menuPayload_ttgukv.png "menuPayload")
+      </details>
+   2. Tambahkan intruksi menu ketika pengguna selesai menyimpan profilenya.
+      ```javascript
+      //ketika pengguna menyimpan profile
+       app.post("/setProfile", (req, res) => {
+        console.log(req.body);
+        db.doc(`users/${req.body.id}`)
+          .update({
+            language: `${req.body.lang}`
+          })
+          .then(function() {
+            language = req.body.lang
+            callSendAPI(req.body.id, {
+              text: 'Your Profile has Updated' }
+              //menambahkan intruksi penggunaan menu dan translate kepada pengguna
+              .then(()=>{
+              callSendAPI(req.body.id, {
+              text: 'Type "menu" for accessing our feature or type "Translate <Word or Sentence that you want to translate to your language>"' } )
+            })
+
+            res.status(200).end();
+           });
+       });
+       ```
+       <details>
+       <summary>Lihat Gambar</summary>
+
+      ![add_instructions](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603633291/add_instructions_g853du.png "add_instructions")
+      </details>
+   3. Menampilkan template menu dari menuPayload ketika pengguna mengetikkan `menu` di messenger pada fungsi handleMessage.
+      ```javascript
+      else if(received_message.text.toLowerCase() == 'menu'){
+      callSendAPI(sender_psid, menuPayload)
+      }
+      ```
+       <summary>Lihat Gambar</summary>
+
+      ![menu_Instruction](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603633897/menu_Instruction_sqpjri.png "menu_Instruction")
+      </details>
+      
+   #### Menggunakan API WordsAPI
+   sekarang kita akan menggunakan API 'WordsAPI' yang ada di RapidAPI untuk menerjemahkan kata yang diinputkan user di chat.
+      
+   1. Buka halaman [WordsAPI RapidAPI](https://rapidapi.com/dpventures/api/wordsapi/endpoints), pastikan sudah login.
+   2. Sama seperti langkah penggunaan Just Translated API, 
+   
