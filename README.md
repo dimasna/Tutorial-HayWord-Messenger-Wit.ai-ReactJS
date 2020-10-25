@@ -1,9 +1,9 @@
-# 🥇Studi Kasus Membuat Aplikasi HayLingo Versi Mini dengan FB Messenger, Wit.ai dan React JS
+# 🥇Studi Kasus Membuat Aplikasi HayWord dengan FB Messenger, Wit.ai dan React JS
 
 
 ## 🖐Pendahuluan
 
-Halo kawan-kawan, pada kesempatan kali ini saya akan berbagi tutorial cara membuat aplikasi HayLingo versi mini dengan FB messenger, Wit.ai (NLP) dan React JS. Sebelumnya HayLingo meraih juara 1 lomba hackathon facebook messenger 2020 dengan menawarkan fitur HayBot, HayFriend, dan HayWord. Di studi kasus kali ini kita akan berfokus membuat HayWord yaitu fitur untuk membantu pengguna memperkaya kosa kata bahasa inggrisnya dengan gamifikasi tebak kata dengan berbagai macam petunjuk yang diberikan seperti sinonim, jenis kata dan definisi. 
+Halo kawan-kawan, pada kesempatan kali ini saya akan berbagi tutorial cara membuat aplikasi HayLingo versi mini (HayWord) dengan FB messenger, Wit.ai (NLP) dan React JS. Sebelumnya HayLingo meraih juara 1 lomba hackathon facebook messenger 2020 dengan menawarkan fitur HayBot, HayFriend, dan HayWord. Di studi kasus kali ini kita akan berfokus membuat HayWord yaitu fitur untuk membantu pengguna memperkaya kosa kata bahasa inggrisnya dengan gamifikasi tebak kata dengan berbagai macam petunjuk yang diberikan seperti sinonim, jenis kata dan definisi serta fitur translate. 
 
 berikut ini tampilan aplikasi yang akan kita buat :
 
@@ -17,12 +17,17 @@ berikut ini tampilan aplikasi yang akan kita buat :
 [Sumber](https://review42.com/facebook-messenger-statistics/)
 
 
-#### Arsitektur Aplikasi yang akan dibuat
+#### Apa yang akan kita pelajari
+- FB Messenger (membuat aplikasi chatbot, implementasi messenger extension webview, quick replies, generic template)
+- Wit.ai (membuat intent, entity, training, integrasi ke messenger)
+- ReactJS (integrasi messenger, membuat react komponen, state dan props)
+- Firebase (integrasi messenger, membuat dan mengupdate data pengguna)
+- Integrasi API ( Translate API, WordsAPI)
 
 #### Hal-hal yang harus dipersiapkan
- ☑ Akun Facebook untuk login di FB developer (https://developers.facebook.com/), Wit.ai (https://wit.ai/), Glitch (https://glitch.com/), RapidAPI (https://rapidapi.com/)
+ ☑ Akun Facebook untuk login di [FB developer](https://developers.facebook.com/), [Wit.ai](https://wit.ai/), [Glitch](https://glitch.com/), [RapidAPI](https://rapidapi.com/)
  
- ☑ Akun Firebase (https://firebase.google.com/)
+ ☑ Akun [Firebase](https://firebase.google.com/)
  
  ☑ Komputer/Laptop
  
@@ -33,13 +38,12 @@ berikut ini tampilan aplikasi yang akan kita buat :
 ## 📃Daftar Isi
 
 <!--ts-->
-   * [Pendahuluan](#🖐pendahuluan)
+   * [Pendahuluan](#pendahuluan)
       * [Mengapa Buat App di Facebook Messenger ?](#mengapa-harus-buat-aplikasi-di-facebook-messenger-)
-      * [Alur Aplikasi yang akan dibuat](#arsitektur-aplikasi-yang-akan-dibuat)
-      * [Apa yang akan kamu pelajari](#arsitektur-aplikasi-yang-akan-dibuat)
+      * [Apa yang akan kita pelajari](#apa-yang-akan-kita-pelajari)
       * [Hal yang harus dipersiapkan](#hal-hal-yang-harus-dipersiapkan)
-   * [Daftar Isi](#📃daftar-isi)
-   * [Instalasi](#⚙instalasi)
+   * [Daftar Isi](#daftar-isi)
+   * [Instalasi](#-instalasi)
       * [Mengatur Webhook](#mengatur-webhook)
       * [Mengatur FB App](#mengatur-fb-app)
       * [Integrasi Webhook dengan FB App](#integrasi-webhook-dengan-fb-app)
