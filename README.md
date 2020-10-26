@@ -13,7 +13,7 @@ Hello buddies, on this occasion, I will share how to create a mini version of th
 
 📥 It is the top messaging platform in the US with monthly downloads of 2 million downloads
 
-[Sumber](https://review42.com/facebook-messenger-statistics/)
+[Source](https://review42.com/facebook-messenger-statistics/)
 
 
 #### What are we going to learn
@@ -38,7 +38,7 @@ Hello buddies, on this occasion, I will share how to create a mini version of th
 
 <!--ts-->
    * [Introduction](#introduction)
-      * [Why You Should Create Applications on Facebook Messenger ?](#why-you-should-create-application-on-facebook-messenger)
+      * [Why You Should Create Applications on Facebook Messenger ?](#why-you-should-create-applications-on-facebook-messenger-)
       * [What are we going to learn](#what-are-we-going-to-learn)
       * [Things to prepare](#things-to-prepare)
    * [Table of Contents](#table-of-contents)
@@ -49,7 +49,7 @@ Hello buddies, on this occasion, I will share how to create a mini version of th
    * [Welcome Screen](#welcome-screen)
       * [Set Get Started Button](#set-get-started-button)
       * [Set Greeting Text](#set-greeting-text)
-      * [Saving Welcome Screen Setting](#saving-welcome-screnn=setting)
+      * [Saving Welcome Screen Setting](#saving-welcome-screen-setting)
    * [Make Profile Settings](#make-profile-settings)
       * [Connecting Firebase with Applications](#connecting-firebase-with-applications)
       * [Creating a User Table in Firebase](#creating-a-user-table-in-firebase)
@@ -57,8 +57,8 @@ Hello buddies, on this occasion, I will share how to create a mini version of th
       * [Saving Data to Firebase](#saving-data-to-firebase)
       * [Creating a Webview Url Button](#creating-a-webview-url-button)
    * [Make Translate Feature](#make-translate-feature)
-      * [Creating user intent, entity and train utterance with Wit.ai](#creating-user-intent,-entity-and-train-utterance-with-With.ai)
-      * [Connecting Wit.ai with FB Messenger](#connecting-wit.ai-with-fb-messenger)
+      * [Creating user intent, entity and train utterance with Wit.ai](#creating-user-intent-entity-and-train-utterance-with-witai)
+      * [Connecting Wit.ai with FB Messenger](#connecting-witai-with-fb-messenger)
       * [Using the Translate API](#using-the-translate-api)
    * [Make HayWord Feature](#make-hayword-feature)
       * [Creating HayWord Menu With Generic Templates](#creating-hayword-menu-with-generic-templates)
@@ -198,7 +198,7 @@ After getting the webhook url, we will be connected to the Facebook application 
 
     ![verify webhook](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603251168/verify_webhook_zdq0h1.png "verify webhook")
         </details>
- 7.After successfully verifying, click on the 'Add Subscriptions' button to subscribe the messenger service we will use.
+ 7. After successfully verifying, click on the 'Add Subscriptions' button to subscribe the messenger service we will use.
         <details>
       <summary>Show Details</summary>
 
@@ -563,11 +563,11 @@ After getting the webhook url, we will be connected to the Facebook application 
              callSendAPI(sender_psid, response);
            }
         ```
-   <details>
-      <summary>Show Details</summary>
+      <details>
+         <summary>Show Details</summary>
 
-   ![button url (https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603574549/buton_web_url_arbvok.png "button url ")
-   </details>
+      ![button url](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603574549/buton_web_url_arbvok.png "button url ")
+      </details>
    
    ## 🈸Make Translate Feature
    <p align="center">
@@ -751,7 +751,7 @@ After getting the webhook url, we will be connected to the Facebook application 
          callSendAPI(sender_psid, response);
             }
         ```
-   ## 🕹 Make HayWord Feature
+   ## 🕹Make HayWord Feature
    this time we will create a HayWord feature by attracting users to guess the word based on definitions, synonyms and word types.
    
    #### Creating HayWord Menu With Generic Templates
@@ -1031,9 +1031,10 @@ After getting the webhook url, we will be connected to the Facebook application 
   ## 🤞Closing
   Congratulations on completing the tutorial on how to create a HayWord application with FB Messenger, Wit.ai and React JS. The final code for messenger and wit.ai applications can be found in this repository.
   
-  Code Inspiration : 
-  https://github.com/fbsamples/messenger-platform-samples by developers.facebook.com
-  Facebook Messenger Documentation
-  Wit.ai Documentation
-  ReactJS Documentation
-  Firebase Documentation
+  Code Inspiration :
+  
+  - https://github.com/fbsamples/messenger-platform-samples by developers.facebook.com  
+  - Facebook Messenger Documentation  
+  - Wit.ai Documentation
+  - ReactJS Documentation  
+  - Firebase Documentation
