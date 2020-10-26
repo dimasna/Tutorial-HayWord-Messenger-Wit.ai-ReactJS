@@ -5,7 +5,9 @@
 
 Halo kawan-kawan, pada kesempatan kali ini saya akan berbagi tutorial cara membuat aplikasi HayLingo versi mini (HayWord) dengan FB messenger, Wit.ai (NLP) dan React JS. Sebelumnya HayLingo meraih juara 1 lomba hackathon facebook messenger 2020 dengan menawarkan fitur HayBot, HayFriend, dan HayWord. Di studi kasus kali ini kita akan berfokus membuat HayWord yaitu fitur untuk membantu pengguna memperkaya kosa kata bahasa inggrisnya dengan gamifikasi tebak kata dengan berbagai macam petunjuk yang diberikan seperti sinonim, jenis kata dan definisi serta fitur translate. 
 
-berikut ini tampilan aplikasi yang akan kita buat :
+lihat video aplikasi yang akan dibuat :
+
+[![HayWord Walkthrough](http://img.youtube.com/vi/MiOWs0DdRvc/0.jpg)](http://www.youtube.com/watch?v=MiOWs0DdRvc "HayWord Walkthrough")
 
 #### Mengapa Harus Buat Aplikasi di Facebook Messenger ?
 👨‍👨‍👦‍👦 Digunakan oleh 1,3 Milyar pengguna global dan diperkirakan 2,4 Milyar pada 2021
