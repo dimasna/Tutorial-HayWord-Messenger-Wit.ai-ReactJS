@@ -1029,7 +1029,19 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
           }
           ```
   ## 🤞Penutup
-  Selamat telah menyelesaikan tutorial cara membuat aplikasi HayWord dengan FB Messenger, Wit.ai dan React JS. Untuk final code aplikasi messenger dan wit.ai bisa didapatkan di repositori ini.
+  Selamat telah menyelesaikan tutorial cara membuat aplikasi HayWord dengan FB Messenger, Wit.ai dan React JS. Untuk final code aplikasi messenger dan wit.ai bisa didapatkan di [repositori ini](https://github.com/dimasna/Tutorial-HayWord-Messenger-Wit.ai-ReactJS/tree/main/Code) atua link glitch di bawah ini.
+  
+  Quick Start:
+  <!-- View Source Button -->
+  <a href="https://glitch.com/edit/?utm_content=project_quickstartchatbot&utm_source=view_source&utm_medium=button&utm_campaign=glitchButton#!/quickstartchatbot">
+    <img src="https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fview-source%402x.png?1513093958802" alt="view source" height="33">
+  </a>
+  
+  Final Code:
+  <!-- View Source Button -->
+  <a href="https://glitch.com/edit/?utm_content=project_hayword&utm_source=view_source&utm_medium=button&utm_campaign=glitchButton#!/hayword">
+    <img src="https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fview-source%402x.png?1513093958802" alt="view source" height="33">
+  </a>
   
   Code Inspiration : 
   https://github.com/fbsamples/messenger-platform-samples by developers.facebook.com
