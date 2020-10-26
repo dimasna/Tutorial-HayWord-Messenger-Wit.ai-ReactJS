@@ -310,21 +310,21 @@ After getting the webhook url, we will be connected to the Facebook application 
 
     ![add nickname app](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603387396/isi_nama_app_vlhekf.png "add nickname app")
     </details>
- 8. Buat variabel `API_KEY` `AUTH_DOMAIN` `PROJECT_ID` pada file .env dalam glitch dan isi sesuai dengan value yang didapat di firebase sdk.
+ 8. Create ʻAPI_KEY` ʻAUTH_DOMAIN` `PROJECT_ID` variable in the .env file in the glitch and fill it according to the value obtained in firebase sdk.
     <details>
       <summary>Show Details</summary>
 
     ![firebase sdkl](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603392369/set_apikey_firebase_pvjd4t.png "firebase sdk")
     ![set variable firebase](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603392368/add_variabel_firebase_g7elo8.png "set variable firebase")
     </details>
-  9. Setelah itu, kembali ke halaman console firebase > pilih menu 'Develop' > Cloud Firestore > klik tombol 'Create Database'.
+  9. After that, return to the firebase console page > select the 'Develop' menu> Cloud Firestore > click the 'Create Database' button.
      <details>
       <summary>Show Details</summary>
 
      ![create database](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603387722/create_database_jmdhfx.png "create database")
      </details>
-  10. Pada rules kita pilih 'Test Mode' > klik tombol 'Next'.
-  11. Pada location biarkan secara default > klik tombol 'Enable'.
+  10. In rules we select 'Test Mode'> click the 'Next' button.
+  11. In the location, leave it by default > click the 'Enable' button.
       <details>
       <summary>Show Details</summary>
 
@@ -332,19 +332,19 @@ After getting the webhook url, we will be connected to the Facebook application 
       </details>
   
   #### Creating a User Table in Firebase
-  1. Pada sidebar kiri firebase, pilih menu Develop > Cloud Firestore > klik tombol 'Start Collection'.
+  1. On the left sidebar of firebase, select the 'Develop' menu> Cloud Firestore> click the 'Start Collection' button.
      <details>
       <summary>Show Details</summary>
 
       ![create table](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603453591/create_table_rekvc2.png "create table")
       </details>
-  2. Isi nama collection (table) dengan 'users' > klik 'next'.
+  2. Fill in the name of the collection (table) with 'users'> click 'next'.
      <details>
       <summary>Show Details</summary>
 
       ![add name to table](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603456448/add_name_to_table_suu312.png "add name to table")
       </details>
-  3. Klik 'Auto ID' > isi field `1. Field = id , Type = string | 2. Field = language , Type = string` dan biarkan value kosong > klik 'Save'.
+  3. Click 'Auto ID'> fill in the field `1. Field = id, Type = string | 2. Field = language, Type = string` and leave the value blank> click 'Save'.
       <details>
       <summary>Show Details</summary>
 
@@ -354,9 +354,9 @@ After getting the webhook url, we will be connected to the Facebook application 
    #### Creating a Webview to Get User Data with ReactJS
    
    
-   kita akan membuat webview untuk menampilkan form pilihan bahasa pengguna dengan React js.
+   we will create a webview to display the user language choice form with React js.
    
-   1. Menambahak variabel `APP_ID` pada .env, untuk mendapatkan app id dari aplikasi kita bisa dilihat di dashboard aplikasi facebook developer.
+   1. Add the `APP_ID` variable in .env, to get the app id of our application, you can see it on the facebook developer application dashboard.
       <details>
       <summary>Show Details</summary>
 
@@ -364,16 +364,16 @@ After getting the webhook url, we will be connected to the Facebook application 
       ![set app id variable](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603513718/add_app_id_valiable_jjiohs.png "set app id variable")
       </details>
     
-   2. Membuat route get `/setProfile` pada app.js.
+   2. Create the get `/ setProfile` route in app.js.
       ```javascript
-         //set route dengan param userID
+         //set route with param userID
          app.get('/setProfile/:userID', (req, res, next) => { 
            db.doc(`users/${req.params.userID}`).get().then((docSnapshot) => {
-           //mengeck apakah data user telah ada di firebase
+           //check whether the user data is already in firebase
             if(docSnapshot.exists){
-            //mengirimkan file setProfile.ejs yang ada di folder views dan data app id , title dan language
+            //sends the setProfile.ejs file in the views and data folder of the app id, title and language
                res.render('setProfile',{appId: APP_ID, title: 'Setting Profile', lang: docSnapshot.data().language});
-            //jika tidak ada, maka akan memasukkan data user ke firebase
+            //if not, it will enter user data into firebase
             }else{
                         db.collection("users").doc(`${req.params.userID}`).set({
                 id: req.params.userID,
@@ -396,29 +396,29 @@ After getting the webhook url, we will be connected to the Facebook application 
 
       ![set profile route](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603513313/set_profile_route_mydjcb.png "set profile route")
       </details>
-   3. Membuat file `setProfile.ejs` di folder views, biar lebih gampang cukup duplikasi dari file `example.ejs` (klik kanan pada file) lalu ubah namanya menjadi 'setProfile.ejs'.
+   3. Create a `setProfile.ejs` file in the views folder, so it's easier just to duplicate the ʻexample.ejs` file (right click on the file) then rename it to 'setProfile.ejs'.
       <details>
       <summary>Show Details</summary>
 
       ![duplicate ejs file](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603476492/duplicate_file_example.ejs_svomu9.png "duplicate ejs file")
       </details>
-   4. Edit bagian `<script src="/src/example.js"></script>` pada file views/setProfile.ejs menjadi :
+   4. Edit the `<script src =" /src/example.js "> </script>` section of the views /setProfile.ejs file to be :
             
       ```html
-         <script src="/src/setProfile.js"></script> //load react component dari file setProfile.js
+         <script src="/src/setProfile.js"></script> //load react component from setProfile.js file
       ```
       <details>
       <summary>Show Details</summary>
 
       ![edit ejs file](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603477605/edit_setProfile.ejs_gumwzw.png "edit ejs file")
       </details>
-   5. Buat file `setProfile.js` di folder src sebagai react component yang akan di load di file `setProfile.ejs`. biar lebih gampang cukup duplikasi dari file `example.js` (klik kanan pada file) lalu ubah namanya menjadi 'setProfile.js'.
+   5. Create a `setProfile.js` file in the src folder as a react component which will be loaded in the` setProfile.ejs` file. so it's easier just duplicate the file `example.js` (right click on the file) then rename it to 'setProfile.js'.
       <details>
       <summary>Show Details</summary>
 
       ![duplicate js file](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603477464/duplicate_file_example.js_bdk9v6.png "duplicate js file")
       </details>
-   6. Membuat variabel language yang didapat dari firebase dengan menggunakan `window.language` didalam file `setProfile.ejs`.
+   6. Create a language variable obtained from firebase using `window.language` in the ` setProfile.ejs` file.
       ```javascript
       window.language = '<%= lang %>'
       ```
@@ -427,12 +427,12 @@ After getting the webhook url, we will be connected to the Facebook application 
 
       ![add wondow lang variable](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603555076/lang_window_variable_psx7k4.png "add wondow lang variable")
       </details>
-   7. Membuat react komponen form pada file `setProfile.js`.
+   7. Create the react form component in the `setProfile.js` file.
       ```javascript
       'use strict';
 
         const e = React.createElement;
-        //membuat komponen form input select
+        //create a select input form component
         function FormInput(props) {
           return (
               React.createElement("select", { className: "form-control",onChange: props.handlerLang, value: props.lang , style: { flexGrow: "1", marginTop: '1em'} },
@@ -444,7 +444,7 @@ After getting the webhook url, we will be connected to the Facebook application 
               )
             )
         }
-        //membuat komponen button 'Save'
+        //create a 'Save' component button
         class Button extends React.Component {
           constructor(props) {
             super(props);
@@ -452,7 +452,7 @@ After getting the webhook url, we will be connected to the Facebook application 
 
              this.submit = this.submit.bind(this);
           }
-          //membuat fungsi submit untuk update profile
+          //create submit function to update profile
           submit () {
             fetch('https://hayword.glitch.me/setProfile', {
           method: 'POST', 
@@ -471,7 +471,7 @@ After getting the webhook url, we will be connected to the Facebook application 
             );
           }
         }
-        //komponen layout untuk forminput dan button 'Save'
+        //layout components for input form and the 'Save' button
         class SelectLang extends React.Component {
           constructor(props) {
             super(props);
@@ -500,8 +500,8 @@ After getting the webhook url, we will be connected to the Facebook application 
         const dom = document.querySelector('#component');
         ReactDOM.render(e(SelectLang), dom);
         ```
-   8. whitelist domain agar webview yang kita buat dapat diakses di messenger dengan cara:
-      buka halaman facebook (FB page) > page settings > advanced messaging > masukkan url app ke whitelist domain
+   8. whitelist the domain so that the webview we create can be accessed on messenger by:
+      open the facebook page (FB page)> page settings> advanced messaging> enter the url of the app to the whitelist domain
       <details>
       <summary>Show Details</summary>
 
@@ -511,14 +511,14 @@ After getting the webhook url, we will be connected to the Facebook application 
       
         
    #### Saving Data to Firebase 
-   1. Membuat route post `/setProfile` untuk menyimpan data profile pengguna yang telah diperbari ke firebase.
+   1. Create the post `/ setProfile` route to store updated user profile data to firebase.
       ```javascript
       app.post('/setProfile', (req, res) => { 
-      //update data pengguna  (language) ke firebase
+      //update user data (language) to firebase
          db.doc(`users/${req.body.id}`).update({
         language: `${req.body.lang}`
       }).then(function() {
-      //mengirim pesan ke pengguna bahwa data telah berhasil disimpan
+      //sends a message to the user that the data has been saved successfully
       callSendAPI(req.body.id, {
         text: 'Your Profile has Updated' })
         res.status(200).end()
@@ -528,20 +528,20 @@ After getting the webhook url, we will be connected to the Facebook application 
       ```
       
    #### Creating a Webview Url Button
-   sekarang kita akan membuat aplikasi kita membalas pesan dengan template button url webview ketika pengguna pertama kali berinteraksi dengan aplikasi kita (Get Started Button), sebelumnya kita telah mengatur postback untuk Get Started adalah 'MULAI'.
+   Now we are going to make our application reply to the message with the webview url button template when the user first interacts with our application (Get Started Button), previously we have set the postback for Get Started is 'MULAI'.
    
-   1. Membuat kondisi jika ada pesan dengan postback 'MULAI'  maka akan kita balas dengan template button url webview.
+   1. Make a condition if there is a message with the postback 'MULAI', then we will reply with the webview url button template.
       ```javascript
-         //fungsi untuk manajemen pesan tipe postback
+         //function for postback type message management
          function handlePostback(sender_psid, received_postback) {
   
               let response;
-             // mendapatkan payload postback
+             // get payload postback
              let payload = received_postback.payload;
-             //mengecek apakah payload postback sama dengan 'MULAI' ( pengguna klik tombol Get Started Button )
+             //check whether the postback payload is the same as 'MULAI' (user clicks the Get Started Button)
            if(payload === 'MULAI'){
            
-           //memberikan response template button 
+           //provide a response template button
                response = {
                    attachment: {
                        type: "template",
@@ -559,7 +559,7 @@ After getting the webhook url, we will be connected to the Facebook application 
                    }
                }
              }
-             // mengirimkan pesan dengan respon yang telah kita buat diatas
+             // send a message with the response that we created above
              callSendAPI(sender_psid, response);
            }
         ```
@@ -575,35 +575,35 @@ After getting the webhook url, we will be connected to the Facebook application 
    <img src="https://res.cloudinary.com/dzrwauiut/image/upload/w_0.3,c_scale,bo_4px_solid_grey/v1603629434/translate_feature_uwtxia.jpg">
 
    </p>
-   kali ini kita akan membuat fitur translate dalam chat dengan menerjemahkan kata yang dimaksud (intent) user menggunakan NLP Wit.ai.
+   this time we will create the translate feature in the chat by translating the intended word (intent) by the user using NLP Wit.ai.
    
    #### Creating user intent, entity and train utterance with Wit.ai
-   1. Buka halaman [Apps Wit.ai](https://wit.ai/apps), pastikan sudah login menggunakan akun facebook.
-   2. Buat projek aplikasi wit.ai
+   1. Go to [Apps Wit.ai](https://wit.ai/apps) page, make sure you are logged in using a facebook account.
+   2. Create a wit.ai application project
       <details>
       <summary>Show Details</summary>
 
       ![create wit.ai app](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603597940/create_witai_app_vmp3yg.png "create wit.ai app")
       </details>
-   3. Masukkan utterance `Translate <contoh kata/kalimat>` misal 'Translate community' > buat intent 'translate'.
+   3. add utterance `Translate <example word / sentence>` for example 'Translate community'> create 'translate' intent.
       <details>
       <summary>Show Details</summary>
 
       ![create utterance and intent](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603598178/create_utterance_and_intent_goesao.png "create utterance and intent")
       </details>
-   4. Membuat entity kata yang akan diterjemahkan dengan cara blok kata `Community` > pilih `wit/phrase_to_translate`.
+   4. Create word entities to be translated by block word `Community`> select` wit/ phrase_to_translate`.
       <details>
       <summary>Show Details</summary>
 
       ![make an entity](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603598522/make_an_entity_rhsssl.png "make an entity")
       </details>
-   5. Klik tombol 'Train and Validate' untuk melatih dan validasi utterance,intent dan entity yang kita masukkan.
+   5. Click the 'Train and Validate' button to train and validate the utterances, intents and entities that we add.
       <details>
       <summary>Show Details</summary>
 
       ![train_and_validate](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603598641/train_and_validate_p3sj3m.png "train_and_validate")
       </details>
-   6. Latih terus aplikasi wit.ai kita dengan memasukkan berbagai macam kemungkinan utterance yang digunakan pengguna untuk menerjemahkan.
+   6. Continue to train our wit.ai application by entering the various possible utterances that the user uses to translate.
       <details>
       <summary>Show Details</summary>
 
@@ -612,34 +612,34 @@ After getting the webhook url, we will be connected to the Facebook application 
       </details>
       
    #### Connecting Wit.ai with FB Messenger
-   setelah kita melatih aplikasi wit.ai selanjutnya kita hubungkan dengan aplikasi di fb messenger kita.
+   after we train the wit.ai application then we connect it with the application on our fb messenger.
    
-   1. Buka halaman dashboard aplikasi facebook developer yang telah kita buat > masuk ke 'Messenger Setting' > pada bagian Built-In NLP pilih halaman aplikasi.
+   1. Open the facebook developer dashboard page that we have created> go to 'Messenger Settings' > in the Built-in NLP section select the application page.
       <details>
       <summary>Show Details</summary>
 
       ![connect_to_wit.ai](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603600163/connect_to_wit.ai_laucxq.png "connect_to_wit.ai")
       </details>
-   2. Pada 'Default Language Model' pilih `Custom Model`.
+   2. In the 'Default Language Model' select 'Custom Model`.
       <details>
       <summary>Show Details</summary>
 
       ![custom_model](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603600727/custom_model_f6tbok.png "custom_model")
       </details>
-   3. Klik tombil 'Link to existing Wit App'.
+   3. Click 'Link to existing Wit App' button.
       <details>
       <summary>Show Details</summary>
 
       ![Link_to_existing_wit_app](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603600727/Link_to_existing_wit_app_kczrzx.png "Link_to_existing_wit_app")
       </details>
-   4. Masukkan server access token app wit.ai yang didapat di halaman setting aplikasi wit.ai.
+   4. Enter the wit.ai app server access token obtained on the wit.ai application settings page.
       <details>
       <summary>Show Details</summary>
 
       ![get_server_access_token_wit](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603601057/get_server_access_token_wit_vugxgh.png "get_server_access_token_wit")
       ![add_server_access_token_wit](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603601213/add_server_access_token_wit_gnpt2x.png "add_server_access_token_wit")
        </details>
-   5. Setelah berhasil terhubung, setiap pesan pengguna yang masuk ke aplikasi kita akan terproses melalui wit.ai dan akan mengirimkan object nlp kedalam request webhook seperti berikut :
+   5. After successfully connecting, every user message that enters our application will be processed through wit.ai and will send the nlp object into the webhook request as follows :
       ```JSON
       //console.log(received_message.nlp.entitites)
       {"intent":[{"confidence":0.99694817127169,"value":"translate"}],"phrase_to_translate":[{"suggested":true,"confidence":0.91449405248263,"value":"home","type":"value"}]}
@@ -647,34 +647,34 @@ After getting the webhook url, we will be connected to the Facebook application 
       
    
    #### Using the Translate API
-   sekarang kita akan menggunakan API 'Just Translated' yang ada di RapidAPI untuk menerjemahkan kata yang diinputkan user di chat.
+   now we will use the API 'Just Translated' in RapidAPI to translate the words that users enter in the chat.
       
-   1. Buka halaman [Just Translated RapidAPI](https://rapidapi.com/lebedev.str/api/just-translated/endpoints), pastikan sudah login.
-   2. Klik tombol 'Subscribe to Test'.
+   1. Go to [Just Translated RapidAPI](https://rapidapi.com/lebedev.str/api/just-translated/endpoints) page, pastikan sudah login.
+   2. Click 'Subscribe to Test' button.
       <details>
       <summary>Show Details</summary>
 
       ![subscribe_translate_api](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603607762/subscribe_translate_api_c7lkrv.png "subscribe_translate_api")
       </details>
-   3. Pilih Plan 'Basic'.
+   3. Select 'Basic' Plan.
       <details>
       <summary>Show Details</summary>
 
       ![select_just_translated_api_plan](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603607869/select_just_translated_api_plan_tt3zfm.png "select_just_translated_api_plan")
       </details>
-   4. Buat variabel `RAPID_API_KEY` pada file .env, dan isi variabel tersebut dengan api key yang ada di Just Translated RapidAPI.
+   4. Create a variable `RAPID_API_KEY` in the .env file, and fill it with the api key in Just Translated RapidAPI.
       <details>
       <summary>Show Details</summary>
 
       ![get_translate_api_key](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603608286/get_translate_api_key_b1vtaw.png "get_translate_api_key")
       </details>
-   5. Salin contoh code yang disediakan RapidAPI, dibagian kanan pilih bahasa pemrograman Node.js > Request.
+   5. Copy the sample code provided by RapidAPI, on the right, select the programming language Node.js > Request.
       <details>
       <summary>Show Details</summary>
 
       ![select_program_lang](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603611125/select_program_lang_vdwja2.png "select_program_lang")
       </details>
-   6. Buat fungsi `translate(text, lang)` dari code yang disalin sebelumnya untuk menerjemahkan kata dalam file app.js dan edit seperi berikut.
+   6. Create a `translate (text, lang)` function from the previously copied code to translate the word in the app.js file and edit it like this.
       ```javascript
       async function translate(text, lang) {
         return new Promise((resolve, reject) => {
@@ -703,7 +703,7 @@ After getting the webhook url, we will be connected to the Facebook application 
 
       ![translate_function](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603618369/translate_function_xd1kly.png "translate_function")
       </details>
-   7. Untuk memanggil fungsi translate dibutuhkan parameter teks dan language (bahasa pengguna), supaya tidak terjadi banyak request get data pengguna di firebase, maka buatlah variabel global language `var language`, lalu isi variabel tersebut pada saat pengguna menambahkan dengan `language = docSnapshot.data().language` dan memperbarui datanya dengan `language = req.body.lang`.
+   7. To call the translate function, text and language parameters are needed, so that there are not many requests to get user data in firebase, then create a global language variable `var language`, then fill in these variables when the user adds with `language = docSnapshot.data () .language` and updating its data with `language = req.body.lang`.
        
       <details>
        <summary>Show Details</summary>
@@ -715,44 +715,44 @@ After getting the webhook url, we will be connected to the Facebook application 
       ![update_language_variable](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603622016/update_language_variable_ptlrsy.png "update_language_variable")
       </details>
    
-   8. Memperbarui fungsi `handleMessage` untuk memanggil fungsi translate ketika nlp(wit.ai) confidence intent `translate` dan entity `phrase_to_translate` > 0.8.
+   8. Updated the `handleMessage` function to call the translate function when nlp (wit.ai) confidence intent` translate` and entity `phrase_to_translate`> 0.8.
       ```javascript
          async function handleMessage(sender_psid, received_message) {
          let response;
 
-         // mengecek ketika message mengandung teks
+         // check when message contains text
          if (received_message.text) {
-           //membuat variabel dari objek yang dikirimkan nlp wit.ai
+           //create variables from the object passed nlp wit.ai
            const objNlp = received_message.nlp.entities;
 
-           //mengecek apakah terdapat intent translate dengan confidence lebih dari 0.8, begitu juga dengan confidence entity phrase_to_translate
+           //Checks whether there is an intent translate with a confidence greater than 0.8, as well as a confidence entity phrase_to_translate
            if (
              objNlp.intent &&
              objNlp.intent[0].value == "translate" &&
              objNlp.intent[0].confidence > 0.8 &&
              objNlp.phrase_to_translate[0].confidence > 0.8
            ) {
-             //cek apakah variabel language sudah terisi, kalau belum akan mengambil data dari firebase
+             //check whether the language variable is filled, otherwise it will retrieve data from Firebase
             language = language ? language : await db.doc(`users/${sender_psid}`).get().then(docSnapshot => {
              if (docSnapshot.exists) {
 
                       return docSnapshot.data().language
                }});
-             //memanggil fungsi translate
+             //call translate function
              let tr = await translate(objNlp.phrase_to_translate[0].value, language);
-             //memperbarui variabel response dengan hasil dari fungsi translate
+             //update the response variable with the result from the translate function
              response = {
                text: tr
              };
            }
          }
 
-         // mengirim respon ke pengguna
+         // send response to user
          callSendAPI(sender_psid, response);
             }
         ```
    ## 🕹 Make HayWord Feature
-   kali ini kita akan membuat fitur HayWord dengan menggamifikasi pengguna untuk menebak kata berdasarkan petunjuk definisi, sinonim dan jenis kata.
+   this time we will create a HayWord feature by attracting users to guess the word based on definitions, synonyms and word types.
    
    #### Creating HayWord Menu With Generic Templates
    <p align="center">
@@ -761,7 +761,7 @@ After getting the webhook url, we will be connected to the Facebook application 
 
    </p>
    
-   1. Buat variabel `menuPayload` untuk template menu dengan tipe Generic.
+   1. Create a `menuPayload` variable for the menu template with type Generic.
    
       ```javascript
            let menuPayload = {
@@ -771,9 +771,9 @@ After getting the webhook url, we will be connected to the Facebook application 
              template_type:"generic",
              elements:[
                 {
-                 title:"HayWord", //judul 
-                 image_url:"https://res.cloudinary.com/dzrwauiut/image/upload/v1603631463/HayWord_qj0hzv.png", //image thumbnail
-                 subtitle:"enrich your vocabulary through a fun way", //sub judul
+                 title:"HayWord",  
+                 image_url:"https://res.cloudinary.com/dzrwauiut/image/upload/v1603631463/HayWord_qj0hzv.png", //thumbnail image
+                 subtitle:"enrich your vocabulary through a fun way", 
                  buttons:[
                    {
                      type:"postback",
@@ -793,10 +793,10 @@ After getting the webhook url, we will be connected to the Facebook application 
       ![menuPayload](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603632844/menuPayload_ttgukv.png "menuPayload")
       </details>
       
-   2. Tambahkan intruksi menu ketika pengguna selesai menyimpan profilenya.
+   2. Add menu instructions when the user is done saving their profile.
    
       ```javascript
-      //ketika pengguna menyimpan profile
+      //when the user saves the profile
        app.post("/setProfile", (req, res) => {
         console.log(req.body);
         db.doc(`users/${req.body.id}`)
@@ -807,7 +807,7 @@ After getting the webhook url, we will be connected to the Facebook application 
             language = req.body.lang
             callSendAPI(req.body.id, {
               text: 'Your Profile has Updated' }
-              //menambahkan intruksi penggunaan menu dan translate kepada pengguna
+              //add instructions to use menus and translate to users
               .then(()=>{
               callSendAPI(req.body.id, {
               text: 'Type "menu" for accessing our feature or type "Translate <Word or Sentence that you want to translate to your language>"' } )
@@ -823,7 +823,7 @@ After getting the webhook url, we will be connected to the Facebook application 
 
       ![add_instructions](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603633291/add_instructions_g853du.png "add_instructions")
       </details>
-   3. Menampilkan template menu dari menuPayload ketika pengguna mengetikkan `menu` di messenger pada fungsi handleMessage.
+   3. Displays the menu template from menuPayload when the user types `menu` in messenger in the handleMessage function.
    
       ```javascript
       else if(received_message.text.toLowerCase() == 'menu'){
@@ -837,17 +837,17 @@ After getting the webhook url, we will be connected to the Facebook application 
       </details>
       
    #### Using the WordsAPI
-   sekarang kita akan menggunakan API 'WordsAPI' yang ada di RapidAPI untuk menerjemahkan kata yang diinputkan user di chat.
+   Now we will use the API 'WordsAPI' in RapidAPI to translate the words that users input in the chat.
       
-   1. Buka halaman [WordsAPI RapidAPI](https://rapidapi.com/dpventures/api/wordsapi/endpoints), pastikan sudah login.
-   2. Sama seperti langkah penggunaan Just Translated API, subscribe to test > pilih basic plan.
-   3. Salin contoh code yang disediakan RapidAPI, dibagian kanan pilih bahasa pemrograman Node.js > Request.
+   1. Go to [WordsAPI RapidAPI](https://rapidapi.com/dpventures/api/wordsapi/endpoints) page, make sure you are logged in.
+   2. Just like the steps for using Just Translated API, subscribe to the test > choose the basic plan.
+   3. Copy the sample code provided by RapidAPI, on the right, select the programming language Node.js > Request.
       <details>
       <summary>Show Details</summary>
 
       ![copy_wordsapi_code](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603643999/copy_wordsapi_code_n12hax.png "copy_wordsapi_code")
       </details>
-   4. Buat fungsi `getWord()` dalam file app.js, dari code yang disalin sebelumnya untuk mendapatkan kata yang akan ditebak pengguna.
+   4. Create a `getWord ()` function in the app.js file from the code previously copied to get the word the user will guess.
    
       ```javascript
       function getWord() {
@@ -856,16 +856,16 @@ After getting the webhook url, we will be connected to the Facebook application 
                method: 'GET',
                url: 'https://wordsapiv1.p.rapidapi.com/words/',
                qs: {
-               //mengambil kata secara random
+               //take the word randomly
                  random: 'true',
-                 //minimal kata yang dipilih 4 huruf
+                 //at least 4 letters of the word selected
                  lettersMin: '4',
-                 //maksimal kata yang dipilih 8 huruf
+                 //the maximum word selected is 8 letters
                  lettersMax: '8',
-                 //tingkat keumuman kata minimal 4.05 dan maksimal 8.03
+                 //word generality level of at least 4.05 and a maximum of 8.03
                  frequencyMin: '4.05',
                  frequencyMax: '8.03',
-                 //kata memiliki atribut definis,jenis kata,sinonim
+                 //words have definite, word types, synonyms attributes
                  hasDetails: 'definitions,partofspeech,synonyms'
                },
                headers: {
@@ -882,36 +882,36 @@ After getting the webhook url, we will be connected to the Facebook application 
                const def = bodyParse.results[0].definition || '';
                const wordType = bodyParse.results[0].partOfSpeech || '';
                const synonym = bodyParse.results[0].synonyms || '';
-               //mengembalikan nilai dari kata yang ditebak, definis, jenis kata, dan sinonim
+               //returns the value of the guessed word, definition, word type, and synonym
                resolve([word, def, wordType, synonym])
              });
            })
          }
       ```
-   5. Membuat variabel `var modeHayWord; var word; var def; var wordType; var synonym; var censored; var featureHayWord=[];` secara global.
+   5. Create the `var modeHayWord; var word; var def; var wordType; var synonym; var censored; var featureHayWord = []; `globally.
       <details>
       <summary>Show Details</summary>
 
-      ![variabel_haywor](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603653616/variabel_hayword_mwyvoo.png "variabel_haywor")
+      ![variabel_hayword](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603653616/variabel_hayword_mwyvoo.png "variabel_hayword")
       </details>
-   6. Membuat respon postback `PLAY_HAYWORD` pada fungsi handlePostback() untuk memanggil fungsi getWord().
+   6. Create a `PLAY_HAYWORD` postback response to the handlePostback() function to call the getWord() function.
       ```javascript
-      //cek jika payload sama dengan PLAY_HAYWORD
+      //check if the payload is the same as PLAY_HAYWORD
           else if(payload === 'PLAY_HAYWORD'){
-          //set variable modeHayWord menjadi true
+          //set the modeHayWord variable to true
               modeHayWord = true;
-              //memanggil fungsi getWord
+              //call getWord function
                getWord().then(data => {
-               //memberikan nilai pada variabel sesuai dengan data yang didapat dari fungsi getWord
+               //assigns a value to the variable according to the data obtained from the getWord function
                   word = data[0];
                   def = data[1];
                   wordType = data[2];
                   synonym = data[3];
-                //membuat format kata menjadi terlihat di awal dan akhir hurug misal F_ _ _ _ _ _ K (FACEBOOK)
+                //make word formatting visible at the beginning and end of letters eg F_ _ _ _ _ _ K (FACEBOOK)
                   var regex = /(?<!^).(?!$)/g;
                    censored = word.replace(regex, ' _ ')
                   
-                //membuat response quick replies sebagai petunjuk pengguna untuk menebak kata
+                //create response quick replies as instructions for the user to guess the word
                  if (wordType != '') {
                     featureHayWord.push({
                       content_type: "text",
@@ -945,9 +945,9 @@ After getting the webhook url, we will be connected to the Facebook application 
             }
        ```
   #### Provide Hints and Check User Answers
-  sekarang kita akan memberikan petunjuk kepada pengguna dan memeriksa jawaban pengguna apakah benar atau salah.
+  now we are going to provide the hint to the user and check the user's answer whether it is right or wrong.
   
-  1. Memperbarui fungsi handleMessage() untuk menambahkan respon petunjuk dan hasil jawaban.
+  1. Updated the handleMessage() function to add hint responses and answer results.
      ```javascript
         async function handleMessage(sender_psid, received_message) {
         let response;
@@ -988,8 +988,9 @@ After getting the webhook url, we will be connected to the Facebook application 
             response = menuPayload
             return callSendAPI(sender_psid, response);
           }
-          //mengecek apakah pengguna sedang dalam sesi HayWord
+          //check if the user is in a HayWord session
           if(modeHayWord){
+          // give the user hints
               if(received_message.quick_reply){
                 if(received_message.quick_reply.payload == 'WORD_TYPE'){
                   response = {text: wordType}
@@ -1007,7 +1008,7 @@ After getting the webhook url, we will be connected to the Facebook application 
                 return callSendAPI(sender_psid, response);
               }
               else if(received_message.text){
-              //mengeck jawaban pengguna apakah benar atau salah
+              //check the user's answer whether it is correct or not
                 if(received_message.text.toLowerCase()== word){
                   modeHayWord = false;
                   featureHayWord = []
@@ -1027,8 +1028,8 @@ After getting the webhook url, we will be connected to the Facebook application 
 
           }
           ```
-  ## 🤞[Closing]
-  Selamat telah menyelesaikan tutorial cara membuat aplikasi HayWord dengan FB Messenger, Wit.ai dan React JS. Untuk final code aplikasi messenger dan wit.ai bisa didapatkan di repositori ini.
+  ## 🤞Closing
+  Congratulations on completing the tutorial on how to create a HayWord application with FB Messenger, Wit.ai and React JS. The final code for messenger and wit.ai applications can be found in this repository.
   
   Code Inspiration : 
   https://github.com/fbsamples/messenger-platform-samples by developers.facebook.com
