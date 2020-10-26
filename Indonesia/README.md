@@ -1046,8 +1046,8 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
   </a>
   
   Code Inspiration : 
-  https://github.com/fbsamples/messenger-platform-samples by developers.facebook.com
-  Facebook Messenger Documentation
-  Wit.ai Documentation
-  ReactJS Documentation
-  Firebase Documentation
+  - https://github.com/fbsamples/messenger-platform-samples by developers.facebook.com
+  - Facebook Messenger Documentation
+  - Wit.ai Documentation
+  - ReactJS Documentation
+  - Firebase Documentation
