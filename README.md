@@ -77,7 +77,7 @@ Hello buddies, on this occasion, I will share how to create a mini version of th
 This time we will use the Glitch server, if you want to use your own server, you can download the source code from this repository in the section `quickstart` [Here](https://github.com/dimasna/Tutorial-HayWord-Messenger-Wit.ai-ReactJS/tree/main/Source%20Code).
 
 to get the webhook url on Glitch :
-1. Click Remix on Glitch below (to copy the initial code) [source : fb messenger quick-start](https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start)
+1. Click Remix on Glitch below (to copy the initial code)
   
    [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/quickstartchatbot)
  
