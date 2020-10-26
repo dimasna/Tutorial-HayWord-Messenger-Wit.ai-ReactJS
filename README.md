@@ -5,6 +5,10 @@
 
 Hello buddies, on this occasion, I will share how to create a mini version of the HayLingo application (HayWord) with FB messenger, Wit.ai (NLP), and React JS. Previously, HayLingo won 1st place in the 2020 Facebook messenger hackathon by offering HayBot, HayFriend, and HayWord features. In this case study, we will assess, making HayWord a feature to help users enrich their English words by gamification of guessing words with various kinds of clues, such as synonyms, word types, definitions, and translation features. 
 
+See Walktrough Video :
+ 
+[![HayWord Walkthrough](http://img.youtube.com/vi/MiOWs0DdRvc/0.jpg)](http://www.youtube.com/watch?v=MiOWs0DdRvc "HayWord Walkthrough")
+
 
 #### Why You Should Create Applications on Facebook Messenger ?
 👨‍👨‍👦‍👦 Used by 1.3 Billion global users and an estimated 2.4 Billion by 2021.
