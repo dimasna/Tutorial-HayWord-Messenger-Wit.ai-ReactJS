@@ -569,7 +569,7 @@ Setelah mendapatkan url webhook, kita akan menghubungkanya dengan Facebook App s
    <details>
       <summary>Lihat Gambar</summary>
 
-   ![button url (https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603574549/buton_web_url_arbvok.png "button url ")
+   ![button url](https://res.cloudinary.com/dzrwauiut/image/upload/bo_4px_solid_grey/v1603574549/buton_web_url_arbvok.png "button url ")
    </details>
    
    ## 🈸Alur Fitur Translate
