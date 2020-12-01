@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[17],{85:function(a){a.exports=JSON.parse('{"allTagsPath":"/Tutorial-HayWord-Messenger-Wit.ai-ReactJS/blog/tags","slug":"docusaurus","name":"docusaurus","count":3,"permalink":"/Tutorial-HayWord-Messenger-Wit.ai-ReactJS/blog/tags/docusaurus"}')}}]);

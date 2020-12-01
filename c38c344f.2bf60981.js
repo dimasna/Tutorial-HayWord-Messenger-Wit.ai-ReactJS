@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[23],{90:function(a){a.exports=JSON.parse('{"allTagsPath":"/Tutorial-HayWord-Messenger-Wit.ai-ReactJS/blog/tags","slug":"facebook","name":"facebook","count":1,"permalink":"/Tutorial-HayWord-Messenger-Wit.ai-ReactJS/blog/tags/facebook"}')}}]);
